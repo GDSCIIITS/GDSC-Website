@@ -1,5 +1,5 @@
 import React from 'react';
-// import Content from './content';
+import Content from './content';
 import classes from './Footer.module.css'
 
 const Footer = () => {
@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
         </div>
         <div className={`container ${classes.content}`}>
-            {/* < Content /> */}
+            < Content />
         </div>
         <div className={`container ${classes.trailing}`}>
             <div className="row">
