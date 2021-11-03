@@ -1,0 +1,118 @@
+.heading {
+    margin-top: 1em;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding-top: .7em;
+    display: flex;
+}
+
+.heading h4 {
+    font-weight: 400;
+    margin-top: .9rem;
+}
+
+.icons i {
+    font-size: 1.5rem;
+    margin: 0 .2em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.content {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.trailing {
+    padding: 1em 1em;
+}
+
+.options {
+    padding-top: .3em;
+    font-size: 1.3em;
+}
+
+.options a {
+    text-decoration: none;
+    color: #3e4551;
+}
+
+.ref {
+    font-weight: 900;
+    font-size: .8em;
+    padding-top: .8em;
+}
+
+.ref a {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1350px) {
+    .options {
+        padding-top: .6em;
+        font-size: 1em;
+    }
+
+    .ref {
+        font-weight: 900;
+        font-size: .8em;
+        padding-top: .8em;
+    }
+
+    .trailing h2 {
+        font-size: 1.7em;
+        padding-top: .1em;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .options {
+        padding-top: .6em;
+        font-size: 1em;
+    }
+
+    .ref {
+        font-weight: 900;
+        font-size: .8em;
+        padding-top: .8em;
+    }
+
+    .trailing h2 {
+        font-size: 1.7em;
+        padding-top: .1em;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .options {
+        padding-top: .6em;
+        font-size: .7em;
+    }
+
+    .ref {
+        font-weight: 900;
+        font-size: .6em;
+        padding-top: .8em;
+    }
+
+    .trailing h2 {
+        font-size: 1.4em;
+        padding-top: .1em;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .options {
+        padding-top: .6em;
+        font-size: 1em;
+    }
+
+    .ref {
+        font-weight: 900;
+        font-size: .8em;
+        padding-top: .8em;
+    }
+
+    .trailing h2 {
+        font-size: 1.7em;
+        padding-top: .1em;
+    }
+}
