@@ -7,6 +7,7 @@
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   padding-left: 0rem;
+  padding-right: 0rem;
 }
 .links {
   text-decoration: none;
@@ -19,4 +20,17 @@ a:hover {
   color: unset !important;
 }
 
+@media only screen and (max-width: 992px) {
+  .contentHeading {
+    font-size: 110%;
+    font-weight: 450;
+    margin-bottom: 0rem;
+  }
 
+  .links {
+    text-decoration: none;
+    font-size: 90%;
+    color: #3e4551;
+    background-color: transparent;
+  }
+}
