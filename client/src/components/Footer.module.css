@@ -2,17 +2,15 @@
     margin-top: 1em;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    padding-top: .7em;
-    display: flex;
 }
 
-.heading h4 {
-    font-weight: 400;
-    margin-top: .9rem;
+.heading img {
+    height: 30%;
+    width: 30%;
 }
 
 .icons i {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0 .2em;
     color: rgba(0, 0, 0, 0.6);
 }
@@ -22,7 +20,17 @@
 }
 
 .trailing {
-    padding: 1em 1em;
+    padding: 0.2em 1em;
+}
+
+.social_media {
+    display: flex;
+    font-weight: 900;
+    font-size: .8em;
+}
+
+.p-2 {
+    padding: 0 0.5rem !important;
 }
 
 .options {
@@ -38,7 +46,7 @@
 .ref {
     font-weight: 900;
     font-size: .8em;
-    padding-top: .8em;
+    padding-top: .5em;
 }
 
 .ref a {
@@ -60,6 +68,17 @@
     .trailing h2 {
         font-size: 1.7em;
         padding-top: .1em;
+    }
+
+    .heading img {
+        height: 40%;
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 1350px) {
+    .icons {
+        margin-left: 7em;
     }
 }
 
@@ -89,13 +108,22 @@
 
     .ref {
         font-weight: 900;
-        font-size: .6em;
+        font-size: .8em;
         padding-top: .8em;
     }
 
     .trailing h2 {
         font-size: 1.4em;
         padding-top: .1em;
+    }
+
+    .heading img {
+        height: 50%;
+        width: 50%;
+    }
+
+    .icons {
+        margin-left: -4em;
     }
 }
 
@@ -114,5 +142,14 @@
     .trailing h2 {
         font-size: 1.7em;
         padding-top: .1em;
+    }
+
+    .heading img {
+        height: 60%;
+        width: 60%;
+    }
+
+    .icons {
+        margin-left: -1em;
     }
 }

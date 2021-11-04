@@ -59,6 +59,26 @@ const Content = () => {
             </a>
           </div>
         </div>
+        <div
+          className={"col-sm-12 col-md-3 col-lg-3 col-12 " + classes.contentCol}
+        >
+          <p className={classes.contentHeading}>GDSCIIITS</p>
+          <div>
+            <a className={classes.links} href="">
+              Code Of Conduct
+            </a>
+          </div>
+          <div>
+            <a className={classes.links} href="">
+              Terms & Services
+            </a>
+          </div>
+          <div>
+            <a className={classes.links} href="">
+              Community Guidelines
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
