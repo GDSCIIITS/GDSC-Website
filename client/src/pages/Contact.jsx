@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <>
       <h2 className={`container ${styles.contact}`}>
-        <span className={styles.subheading}>Contact</span> GDG Sricity
+        <span className={styles.subheading}>Contact</span> GDG Sri City
       </h2>
       <div className={`container ${styles.container}`}>
         <p className={styles.maintext}>
@@ -12,11 +12,11 @@ const Contact = () => {
           organizations who are interested in Google's technologies or use them
           as part of their projects.
           <br />
-          <br /> Google Developers Group Jalandhar is an initiative to
+          <br /> Google Developers Group Sri City is an initiative to
           concentrate the efforts of many developers in and around Punjab to
           learn, share and get productive using the various Google products.
           <br />
-          <br /> Questions? Please contact connectwithaurapp@gmail.com
+          <br /> Questions? Please contact gdsc@iiits.in
         </p>
         <img
           src="https://myaurapp.web.app/img/contact.23fa5966.svg"
