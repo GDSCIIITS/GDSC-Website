@@ -1,0 +1,19 @@
+.subheading {
+    color: #2c7eea;
+    font-weight: bolder;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .container img {
+    width: 17%;
+  }
+  
+  .maintext {
+    font-weight: 500;
+    margin-right: 7%;
+  }
+  
