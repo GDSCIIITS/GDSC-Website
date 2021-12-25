@@ -16,7 +16,7 @@ const Contact = () => {
           concentrate the efforts of many developers in and around Punjab to
           learn, share and get productive using the various Google products.
           <br />
-          <br /> Questions? Please contact gdsc@iiits.in
+          <br /> Questions? <b>Please contact us at: <a href="mailto:gdsc@iiits.in">gdsc@iiits.in</a></b>
         </p>
         <img
           src="https://myaurapp.web.app/img/contact.23fa5966.svg"
