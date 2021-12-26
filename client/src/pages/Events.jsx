@@ -143,7 +143,7 @@ const Events = () => {
 	return (
 		<>
 	<h2 className={`container ${styles.Events}`}>
-        Our <span className={styles.subheading}>Events</span>
+        <b>Our <span className={styles.subheading}>Events</span></b>
     </h2>
 	<div className={`container ${styles.container}`}>
         <p className={styles.maintext}>
@@ -154,7 +154,7 @@ const Events = () => {
 	<br/>
 
 	<h2 className={`container ${styles.Events}`}>
-        Our <span className={styles.subheading}>Feature Event</span> & <span className={styles.subheading}>Meetups</span>
+        <b>Our <span className={styles.subheading}>Feature Event</span> & <span className={styles.subheading}>Meetups</span></b>
     </h2>
 	<div className={`container ${styles.container}`}>
         <p className={styles.maintext}>
