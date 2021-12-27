@@ -51,4 +51,10 @@ li, .nav-item {
     color: #2196f3 !important;
 }
 
+.dark, .dark i, .dark img {
+    background-color: #272727;
+    color: white;
+    border-color: #2c7eea;
+}
+
 

@@ -153,3 +153,9 @@
         margin-left: -1em;
     }
 }
+
+.dark, .dark i, .dark img {
+    background-color: #272727;
+    color: white;
+    border-color: #2c7eea;
+}
