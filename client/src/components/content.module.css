@@ -9,6 +9,12 @@
   padding-left: 0rem;
   padding-right: 0rem;
 }
+
+.dark {
+  background-color: #272727;
+  color: white;
+}
+
 .links {
   text-decoration: none;
   font-size: 110%;

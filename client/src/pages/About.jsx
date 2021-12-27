@@ -1,14 +1,17 @@
 import styles from "./About.module.css";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const About = () => {
+	const themeData = useSelector((state) => state.DarkMode)
+    const classname = themeData.theme ? styles.dark : '';
   return (
     <>
-	<h1 className={`container ${styles.about}`}>
-        <span className={styles.subheading}>About</span>
+	<h1 className={`container ${styles.about} ${classname}`}>
+        <span className={styles.subheading + " " + classname}>About</span>
       </h1>
-	  <div className={`container ${styles.container}`}>
-        <p className={styles.maintext}>
+	  <div className={`container ${styles.container} ${classname}`}>
+        <p className={styles.maintext + " " + classname}>
           Our events are open to newbies, developers, managers, and
           organizations who are interested in Google's technologies or use them
           as part of their projects.
@@ -17,18 +20,18 @@ const About = () => {
           concentrate the efforts of many developers in and around Sri City to
           learn, share and get productive using the various Google products.
           <br />
-          <br /> Questions? <b>Please contact us at: <a href="mailto:gdsc@iiits.in">gdsc@iiits.in</a></b>
+          <br /> Questions? <b className={classname}>Please contact us at: <a href="mailto:gdsc@iiits.in" className={classname} >gdsc@iiits.in</a></b>
 		  <br/><br/><br/><br/>
 
-		  <h2 class="google-font"><b>Community Guidelines</b></h2>
-		  <p class="google-font">
-			  <b>1. Be respectful</b>
+		  <h2 className={"google-font " + classname}><b className={classname}>Community Guidelines</b></h2>
+		  <p className={"google-font " + classname}>
+			  <b className={classname}>1. Be respectful</b>
 			  <br/>
 			  We're all part of the same community, so be friendly, welcoming, and generally a nice person. 
 			  Be someone that other people want to be around.
 			  <br/>
 			  <br/>
-			  <b>2. Be respectful and constructive</b>
+			  <b className={classname}>2. Be respectful and constructive</b>
 			  <br/>
 			  Remember to be respectful and constructive with your communication to fellow members. 
 			  Don't get into flamewars, make personal attacks, vent, or rant unconstructively. 
@@ -36,13 +39,13 @@ const About = () => {
 			  diffuse tension and stop a negative thread as early as possible.
 			  <br/>
 			  <br/>
-			  <b>3. Be collaborative</b>
+			  <b className={classname}>3. Be collaborative</b>
 			  <br/>
 			  Work together! We can learn a lot from each other. Share knowledge, and help each other out.
 			</p>
 			<br/><br/><br/>
 
-			<h2 class="google-font"> <b>Code of Conduct</b></h2>
+			<h2 className={"google-font " + classname}> <b className={classname}>Code of Conduct</b></h2>
 			When you join our programs, you're joining a community. And like any growing community, a few ground 
 			rules about expected behavior are good for everyone. These guidelines cover both online (e.g. mailing lists, 
 			social channels) and offline (e.g. in-person meetups) behavior. Violations of this code of conduct can result 
@@ -51,23 +54,23 @@ const About = () => {
 			<br/>				
 			<br/>
 			<br/>
-			<h2 class="google-font"><b>Anti Harrasment Policy</b></h2>
-			<p class="google-font">
-			<h4> 
-				<b>Why do we have an official Anti-Harassment policy for GDG Sri City events?</b>
+			<h2 className={"google-font " + classname}><b className={classname}>Anti Harrasment Policy</b></h2>
+			<p className={"google-font " + classname}>
+			<h4 className={classname}> 
+				<b className={classname}>Why do we have an official Anti-Harassment policy for GDG Sri City events?</b>
 			</h4>
-			<ul>
+			<ul className={classname}>
 			- It sets expectations for behavior at the event. Simply having an anti-harassment policy can prevent harassment.<br/>
 			- It encourages people to attend who have had bad experiences at other events.<br/>
 			- It gives event staff/volunteers instructions on how to handle harassment quickly, with minimum amount of disruption for the event.<br/>
 			</ul>
 			</p>
 				<br/>
-			<h4> 
-				<b>GDG Sri City is dedicated to providing a harassment-free event experience for everyone, 
+			<h4 className={classname}> 
+				<b className={classname}>GDG Sri City is dedicated to providing a harassment-free event experience for everyone, 
 			regardless of:</b>
 			</h4>
-			<ul>
+			<ul className={classname}>
 			- Gender<br/>
 			- Sexual Orientation<br/>
 			- Disability<br/>
@@ -80,14 +83,14 @@ const About = () => {
 			The above is not an exhaustive list -- we do not tolerate harassment of event spanarticipants in any form.<br/>
 			<br/>
 
-			<h5>
+			<h5 className={classname}>
 			Sexual language and imagery is not appropriate for any event venue, including talks. 
 			Event participants violating these rules may be expelled from the event, and event banned from 
 			future events at the discretion of the event organizers/management.
 			</h5>
 			<br/>
 			Harassment includes (but is not limited to):<br/>
-			<ul>
+			<ul className={classname}>
 				- Offensive verbal comments related to gender, sexual orientation, disability, gender identity, age, race, religion.<br/>
 				- The use or display of sexual images in public spaces<br/>
 				- Deliberate intimidation<br/>
@@ -99,7 +102,7 @@ const About = () => {
 				- Advocating for, or encouraging, any of the above<br/>
 			</ul>
 			<br/>
-			<h6>
+			<h6 className={classname}>
 			Participants asked to stop any harassing behavior are expected to comply immediately.<br/><br/>
 
 			Exhibiting partners and guests are also subject to the anti-harassment policy. In particular, exhibitors 
@@ -127,6 +130,7 @@ const About = () => {
         <img
           src="https://myaurapp.web.app/img/about.23fa5966.svg"
           alt="unimportant"
+		  className={classname}
         />
       </div>
     </>

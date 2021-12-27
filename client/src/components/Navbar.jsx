@@ -1,41 +1,45 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "./Navbar.module.css";
+import classes from "./Navbar.module.css";
+import Toggler from "./Toggler";
 
 const Navbar = () => {
+	const themeData = useSelector((state) => state.DarkMode)
+    const classname = themeData.theme ? classes.dark : '';
 	return (
-		<div className="nav-container">
-			<Link to="/" className="nav-logo"> GDSC IIITS </Link>
-			<nav>	
-				<ul className="nav_links">
-					<li>
+		<div className={classes["nav-container"] + " " + classname}>
+			<Link to="/" className={classes["nav-logo"] + " " + classname}> GDSC IIITS </Link>
+			<nav className={classname}>
+				<ul className={classes["nav_links"] + " " + classname}>
+					<li className={classname}>
 						<Link
 							to="/"
-							className="nav-item"
+							className={classes["nav-item"] + " " + classname}
 						>
 							Home
 						</Link>
 					</li>
-					<li>
+					<li className={classname}>
 						<Link
 							to="/events"
-							className="nav-item"
+							className={classes["nav-item"] + " " + classname}
 						>
 							Events
 						</Link>
 					</li>
-					<li>
+					<li className={classname}>
 						<Link
 							to="/blogs"
-							className="nav-item"
+							className={classes["nav-item"] + " " + classname}
 						>
 							Blogs
 						</Link>
 					</li>
-					<li>
+					<li className={classname}>
 						<Link
 							to="/team"
-							className="nav-item"
+							className={classes["nav-item"] + " " + classname}
 						>
 							Team
 						</Link>
@@ -48,21 +52,24 @@ const Navbar = () => {
 							Speakers
 						</Link>
 					</li> */}
-					<li>
+					<li className={classname}>
 						<Link
 							to="/about"
-							className="nav-item"
+							className={classes["nav-item"] + " " + classname}
 						>
 							About
 						</Link>
 					</li>
-					<li>
+					<li className={classname}>
 						<Link
 							to="/contact"
-							className="nav-item"
+							className={classes["nav-item"] + " " + classname}
 						>
 							Contact
 						</Link>
+					</li>
+					<li className={classname}>
+						<Toggler />
 					</li>
 				</ul>
 			</nav>
