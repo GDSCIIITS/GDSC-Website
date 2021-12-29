@@ -1,161 +1,163 @@
 .heading {
-    margin-top: 1em;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 1em;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .heading img {
-    height: 30%;
-    width: 30%;
+  height: 30%;
+  width: 30%;
 }
 
 .icons i {
-    font-size: 1rem;
-    margin: 0 .2em;
-    color: rgba(0, 0, 0, 0.6);
+  font-size: 1rem;
+  margin: 0 0.2em;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .content {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .trailing {
-    padding: 0.2em 1em;
+  padding: 0.2em 1em;
 }
 
 .social_media {
-    display: flex;
-    font-weight: 900;
-    font-size: .8em;
+  display: flex;
+  font-weight: 900;
+  font-size: 0.8em;
 }
 
 .p-2 {
-    padding: 0 0.5rem !important;
+  padding: 0 0.5rem !important;
 }
 
 .options {
-    padding-top: .3em;
-    font-size: 1.3em;
+  padding-top: 0.3em;
+  font-size: 1.3em;
 }
 
 .options a {
-    text-decoration: none;
-    color: #3e4551;
+  text-decoration: none;
+  color: #3e4551;
 }
 
 .ref {
-    font-weight: 900;
-    font-size: .8em;
-    padding-top: .5em;
+  font-weight: 900;
+  font-size: 0.8em;
+  padding-top: 0.5em;
 }
 
 .ref a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 1350px) {
-    .options {
-        padding-top: .6em;
-        font-size: 1em;
-    }
+  .options {
+    padding-top: 0.6em;
+    font-size: 1em;
+  }
 
-    .ref {
-        font-weight: 900;
-        font-size: .8em;
-        padding-top: .8em;
-    }
+  .ref {
+    font-weight: 900;
+    font-size: 0.8em;
+    padding-top: 0.8em;
+  }
 
-    .trailing h2 {
-        font-size: 1.7em;
-        padding-top: .1em;
-    }
+  .trailing h2 {
+    font-size: 1.7em;
+    padding-top: 0.1em;
+  }
 
-    .heading img {
-        height: 40%;
-        width: 40%;
-    }
+  .heading img {
+    height: 40%;
+    width: 40%;
+  }
 }
 
 @media only screen and (min-width: 1350px) {
-    .icons {
-        margin-left: 7em;
-    }
+  .icons {
+    margin-left: 7em;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
-    .options {
-        padding-top: .6em;
-        font-size: 1em;
-    }
+  .options {
+    padding-top: 0.6em;
+    font-size: 1em;
+  }
 
-    .ref {
-        font-weight: 900;
-        font-size: .8em;
-        padding-top: .8em;
-    }
+  .ref {
+    font-weight: 900;
+    font-size: 0.8em;
+    padding-top: 0.8em;
+  }
 
-    .trailing h2 {
-        font-size: 1.7em;
-        padding-top: .1em;
-    }
+  .trailing h2 {
+    font-size: 1.7em;
+    padding-top: 0.1em;
+  }
 }
 
 @media only screen and (max-width: 992px) {
-    .options {
-        padding-top: .6em;
-        font-size: .7em;
-    }
+  .options {
+    padding-top: 0.6em;
+    font-size: 0.7em;
+  }
 
-    .ref {
-        font-weight: 900;
-        font-size: .8em;
-        padding-top: .8em;
-    }
+  .ref {
+    font-weight: 900;
+    font-size: 0.8em;
+    padding-top: 0.8em;
+  }
 
-    .trailing h2 {
-        font-size: 1.4em;
-        padding-top: .1em;
-    }
+  .trailing h2 {
+    font-size: 1.4em;
+    padding-top: 0.1em;
+  }
 
-    .heading img {
-        height: 50%;
-        width: 50%;
-    }
+  .heading img {
+    height: 50%;
+    width: 50%;
+  }
 
-    .icons {
-        margin-left: -4em;
-    }
+  .icons {
+    margin-left: -4em;
+  }
 }
 
 @media only screen and (max-width: 767px) {
-    .options {
-        padding-top: .6em;
-        font-size: 1em;
-    }
+  .options {
+    padding-top: 0.6em;
+    font-size: 1em;
+  }
 
-    .ref {
-        font-weight: 900;
-        font-size: .8em;
-        padding-top: .8em;
-    }
+  .ref {
+    font-weight: 900;
+    font-size: 0.8em;
+    padding-top: 0.8em;
+  }
 
-    .trailing h2 {
-        font-size: 1.7em;
-        padding-top: .1em;
-    }
+  .trailing h2 {
+    font-size: 1.7em;
+    padding-top: 0.1em;
+  }
 
-    .heading img {
-        height: 60%;
-        width: 60%;
-    }
+  .heading img {
+    height: 60%;
+    width: 60%;
+  }
 
-    .icons {
-        margin-left: -1em;
-    }
+  .icons {
+    margin-left: -1em;
+  }
 }
 
-.dark, .dark i, .dark img {
-    background-color: #272727;
-    color: white;
-    border-color: #2c7eea;
+.dark,
+.dark i,
+.dark img {
+  background-color: #272727;
+  color: white;
+  border-color: #2c7eea;
 }
