@@ -28,12 +28,13 @@
 .social_media_icon {
   margin-left: 2px;
   margin-right: 2px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .icons_container {
   display: flex;
   margin-top: 10px;
+  align-items: center;
 }
 
 .dark h5 {
