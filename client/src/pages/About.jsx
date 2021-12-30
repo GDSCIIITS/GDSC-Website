@@ -2,6 +2,95 @@ import styles from "./About.module.css";
 import React from "react";
 import heroimg from '../assets/herosectionnbg.png';
 import gdsciiits from '../assets/gdsciiits.png';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+
+const Accordion = styled((props) => (
+	<MuiAccordion disableGutters elevation={0} square {...props} />
+  ))(({ theme }) => ({
+	border: `1px solid ${theme.palette.divider}`,
+	'&:not(:last-child)': {
+	  borderBottom: 0,
+	},
+	'&:before': {
+	  display: 'none',
+	},
+  }));
+  
+  const AccordionSummary = styled((props) => (
+	<MuiAccordionSummary
+	  expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />}
+	  {...props}
+	/>
+  ))(({ theme }) => ({
+	backgroundColor:
+	  theme.palette.mode === 'dark'
+		? 'rgba(255, 255, 255, .05)'
+		: 'rgba(0, 0, 0, .03)',
+	flexDirection: 'row-reverse',
+	'& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+	  transform: 'rotate(90deg)',
+	},
+	'& .MuiAccordionSummary-content': {
+	  marginLeft: theme.spacing(1),
+	},
+  }));
+  
+  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+	padding: theme.spacing(2),
+	borderTop: '1px solid rgba(0, 0, 0, .125)',
+  }));
+  
+  function CustomizedAccordions() {
+	const [expanded, setExpanded] = React.useState('panel1');
+  
+	const handleChange = (panel) => (event, newExpanded) => {
+	  setExpanded(newExpanded ? panel : false);
+	};
+  
+	return (
+	  <div>
+		<Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+		  <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+			<Typography>1. Be respectful</Typography>
+		  </AccordionSummary>
+		  <AccordionDetails>
+			<Typography>
+				We're all part of the same community, so be friendly, welcoming, and generally a nice person.
+				Be someone that other people want to be around.
+			</Typography>
+		  </AccordionDetails>
+		</Accordion>
+		<Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+		  <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
+			<Typography>2. Be respectful and constructive</Typography>
+		  </AccordionSummary>
+		  <AccordionDetails>
+			<Typography>
+				Remember to be respectful and constructive with your communication to fellow members.
+				Don't get into flamewars, make personal attacks, vent, or rant unconstructively.
+				Everyone should take responsibility for the community and take the initiative to
+				diffuse tension and stop a negative thread as early as possible.
+			</Typography>
+		  </AccordionDetails>
+		</Accordion>
+		<Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+		  <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
+			<Typography>3. Be collaborative</Typography>
+		  </AccordionSummary>
+		  <AccordionDetails>
+			<Typography>
+				Work together! We can learn a lot from each other. Share knowledge, and help each other out.
+			</Typography>
+		  </AccordionDetails>
+		</Accordion>
+	  </div>
+	);
+  }
 
 const About = () => {
 	return (
@@ -34,26 +123,11 @@ const About = () => {
 				<p className={styles.maintext}>
 					<h2 className={"google-font"}><b>Community Guidelines</b></h2>
 					<p className={"google-font"}>
-						<b>1. Be respectful</b>
-						<br />
-						We're all part of the same community, so be friendly, welcoming, and generally a nice person.
-						Be someone that other people want to be around.
-						<br />
-						<br />
-						<b>2. Be respectful and constructive</b>
-						<br />
-						Remember to be respectful and constructive with your communication to fellow members.
-						Don't get into flamewars, make personal attacks, vent, or rant unconstructively.
-						Everyone should take responsibility for the community and take the initiative to
-						diffuse tension and stop a negative thread as early as possible.
-						<br />
-						<br />
-						<b>3. Be collaborative</b>
-						<br />
-						Work together! We can learn a lot from each other. Share knowledge, and help each other out.
+						<CustomizedAccordions/>
 					</p>
-					<br /><br /><br />
-
+					
+					<br /><br />
+					
 					<h2 className={"google-font"}> <b>Code of Conduct</b></h2>
 					When you join our programs, you're joining a community. And like any growing community, a few ground
 					rules about expected behavior are good for everyone. These guidelines cover both online (e.g. mailing lists,
