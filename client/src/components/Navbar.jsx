@@ -6,7 +6,7 @@ import Toggler from "./Toggler";
 
 const Navbar = () => {
 	const themeData = useSelector((state) => state.DarkMode)
-    const classname = themeData.theme ? classes.dark : '';
+	const classname = themeData.theme ? classes.dark : '';
 	return (
 		<div className={classes["nav-container"] + " " + classname}>
 			<Link to="/" className={classes["nav-logo"] + " " + classname}> GDSC IIITS </Link>
@@ -28,14 +28,14 @@ const Navbar = () => {
 							Events
 						</Link>
 					</li>
-					<li>
+					{/* <li>
 						<Link
 							to="/blogs"
 							className={classes["nav-item"] + " " + classname}
 						>
 							Blogs
 						</Link>
-					</li>
+					</li> */}
 					<li>
 						<Link
 							to="/team"

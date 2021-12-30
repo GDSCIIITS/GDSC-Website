@@ -1,17 +1,17 @@
 import React from "react";
 import Card from "@material-ui/core/Card";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import TableHead from '@mui/material/TableHead';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import TableHead from "@mui/material/TableHead";
 // import IconButton from '@mui/material/IconButton';
 // import FirstPageIcon from '@mui/icons-material/FirstPage';
 // import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -22,14 +22,14 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
 import { Button } from "@mui/material";
 
-const useStyles = makeStyles(theme => ({
-	dark: {
-		backgroundColor: '#292929', 
-		color: 'white',
-	}
-}))
+const useStyles = makeStyles((theme) => ({
+  dark: {
+    backgroundColor: "#292929",
+    color: "white",
+  },
+}));
 
-const dark = { backgroundColor: '#292929', color: 'white' }
+const dark = { backgroundColor: "#292929", color: "white" };
 const CardOne = (props) => {
 	return <React.Fragment>
 		<CardContent style={props.theme ? dark : {}}>
@@ -54,34 +54,45 @@ const CardOne = (props) => {
 }
 
 const columns = [
-	{ id: 'EventName', label: 'Event Name', minWidth: 170, fontweight: 'bold' },
-	{ id: 'code', label: 'Date', minWidth: 100, align: 'center', fontweight: 'bold' },
-	{
-		id: 'Venue',
-		label: 'Venue',
-		minWidth: 170,
-		align: 'center',
-		fontweight: 'bold'
-	},
-	{
-		id: 'more',
-		label: 'See More',
-		minWidth: 170,
-		align: 'center',
-		fontweight: 'bold'
-	},
+  { id: "EventName", label: "Event Name", minWidth: 170, fontweight: "bold" },
+  {
+    id: "code",
+    label: "Date",
+    minWidth: 100,
+    align: "center",
+    fontweight: "bold",
+  },
+  {
+    id: "Venue",
+    label: "Venue",
+    minWidth: 170,
+    align: "center",
+    fontweight: "bold",
+  },
+  {
+    id: "more",
+    label: "See More",
+    minWidth: 170,
+    align: "center",
+    fontweight: "bold",
+  },
 ];
 
 function createData(EventName, code, Venue, more) {
-	return { EventName, code, Venue, more };
+  return { EventName, code, Venue, more };
 }
 
 const rows = [
-	createData('30 Days of Google Cloud', '2021-09-01', 'Online', 'See more'),
-	createData('Kotlin DEV', '2021-12-01', 'Online', 'See more'),
-	createData('waiting...', '202y-mm-dd', 'Online/Offline', 'See more'),
-	createData('Ola!', '2022-mm-dd', 'Some address', 'See more'),
-	createData('More can be added with pagination', '2022-mm-dd', 'Some address', 'See more'),
+  createData("30 Days of Google Cloud", "2021-09-01", "Online", "See more"),
+  createData("Kotlin DEV", "2021-12-01", "Online", "See more"),
+  createData("waiting...", "202y-mm-dd", "Online/Offline", "See more"),
+  createData("Ola!", "2022-mm-dd", "Some address", "See more"),
+  createData(
+    "More can be added with pagination",
+    "2022-mm-dd",
+    "Some address",
+    "See more"
+  ),
 ];
 
 function StickyHeadTable(props) {

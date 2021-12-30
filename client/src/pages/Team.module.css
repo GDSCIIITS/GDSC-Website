@@ -1,0 +1,18 @@
+.header_title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.team_card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.dark,
+.dark i,
+.dark img {
+  background-color: #121212;
+  color: white;
+  border-color: #2c7eea;
+}

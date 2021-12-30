@@ -1,5 +1,5 @@
 const Speakers = () => {
-	return <div>Speakers page</div>;
+  return <div>Speakers page</div>;
 };
 
 export default Speakers;

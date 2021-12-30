@@ -1,4 +1,5 @@
 import styles from "./Contact.module.css";
+import ContactSVG from "../assets/contact.svg";
 
 const Contact = () => {
   return (
