@@ -3,7 +3,6 @@ import Card from "@material-ui/core/Card";
 import Box from '@mui/material/Box';
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -21,6 +20,7 @@ import TableHead from '@mui/material/TableHead';
 import styles from "./Events.module.css";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/styles";
+import { Button } from "@mui/material";
 
 const useStyles = makeStyles(theme => ({
 	dark: {
@@ -33,22 +33,22 @@ const dark = { backgroundColor: '#292929', color: 'white' }
 const CardOne = (props) => {
 	return <React.Fragment>
 		<CardContent style={props.theme ? dark : {}}>
-			<Typography style={props.theme ? { ...dark, fontSize: 14 } : { fontSize: 14 }} color="text.secondary" gutterBottom>
+			<Typography style={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 				Dec 25, 2021
 			</Typography>
-			<Typography style={props.theme ? dark : {}} variant="h5" component="div"><b style={props.theme ? dark : {}}>
+			<Typography variant="h5" component="div"><b>
 				Test Component
 			</b></Typography>
-			<Typography style={props.theme ? { ...dark, mb: 1.5 } : { mb: 1.5 }} color="text.secondary">
+			<Typography style={{ mb: 1.5 }} color="text.secondary">
 				Online/Offline
 			</Typography>
 			<br />
-			<Typography style={props.theme ? dark : {}} variant="body2">
-				<b style={props.theme ? dark : {}}><a href="mailto:gdsc@iiits.in" style={props.theme ? { ...dark, color: '#2c7eea' } : {}}>See more :)</a></b>
+			<Typography variant="body2">
+				<b><a href="mailto:gdsc@iiits.in">See more :)</a></b>
 			</Typography>
 		</CardContent>
 		<CardActions style={props.theme ? dark : {}}>
-			{/* <Button size="small" style={props.theme ? dark : {}}>Learn More</Button> */}
+			<Button size="small" style={props.theme ? dark : {}}>Learn More</Button>
 		</CardActions>
 	</React.Fragment>
 }
@@ -99,43 +99,36 @@ function StickyHeadTable(props) {
 	};
 
 	return (
-		<Paper sx={props.theme ? { ...dark, width: '100%', overflow: 'hidden' } : { width: '100%', overflow: 'hidden' }}>
-			<TableContainer sx={props.theme ? { ...dark, maxHeight: 440 } : { maxHeight: 440 }}>
-				<Table stickyHeader aria-label="sticky table" sx={props.theme ? dark : {}}>
+		<Paper sx={{ width: '100%', overflow: 'hidden' }}>
+			<TableContainer sx={{ maxHeight: 440 }}>
+				<Table stickyHeader aria-label="sticky table">
 					<TableHead
-						sx={props.theme ? dark : {}}>
-						<TableRow sx={props.theme ? dark : {}}>
+						>
+						<TableRow>
 							{columns.map((column) => (
 								<TableCell
 									key={column.id}
 									align={column.align}
 									style={{ minWidth: column.minWidth }}
-									sx={
-										props.theme ? dark : {}
-									}
+									sx={props.theme ? dark : {}}
 								>
 									{column.label}
 								</TableCell>
 							))}
 						</TableRow>
 					</TableHead>
-					<TableBody sx={props.theme ? dark : {}}>
+					<TableBody>
 						{rows
 							.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((row) => {
 								return (
 									<TableRow hover role="checkbox" tabIndex={-1} key={row.code}
-										sx={
-											props.theme ? dark : {}
-										}
 									>
 										{columns.map((column) => {
 											const value = row[column.id];
 											return (
 												<TableCell key={column.id} align={column.align}
-													sx={
-														props.theme ? dark : {}
-													}
+												sx={props.theme ? dark : {}}
 												>
 													{column.format && typeof value === 'number'
 														? column.format(value)
@@ -150,17 +143,10 @@ function StickyHeadTable(props) {
 				</Table>
 			</TableContainer>
 			<TablePagination
-				classes={{ 
-					toolbar: props.theme ? darkTheme.dark : '',
-					selectLabel: props.theme ? darkTheme.dark : '',
-					select: props.theme ? darkTheme.dark : '',
-					selectIcon: props.theme ? darkTheme.dark : '',
-					displayedRows: props.theme ? darkTheme.dark : '',
-					actions: props.theme ? darkTheme.dark : '',
-				}}
+				SelectProps={ props.theme? {MenuProps: {classes: {paper: darkTheme.dark}}} : {} }
 				rowsPerPageOptions={[10, 25, 100]}
 				component="div"
-				className={props.theme}
+				className={props.theme ? darkTheme.dark : ""}
 				count={rows.length}
 				rowsPerPage={rowsPerPage}
 				page={page}
@@ -176,58 +162,50 @@ const Events = () => {
 	const classname = themeData.theme ? styles.dark : '';
 	return (
 		<>
-			<h2 className={`container ${styles.Events} ${classname}`}>
-				<b className={classname}>Our <span className={styles.subheading + " " + classname}>Events</span></b>
+			<h2 className={`container ${styles.Events}`}>
+				<b>Our <span className={styles.subheading}>Events</span></b>
 			</h2>
-			<div className={`container ${styles.container} ${classname}`}>
-				<p className={styles.maintext + " " + classname}>
-					Questions? <b className={classname}>Please contact us at: <a href="mailto:gdsc@iiits.in" className={classname}>gdsc@iiits.in</a></b>
+			<div className={`container ${styles.container}`}>
+				<p className={styles.maintext}>
+					Questions? <b>Please contact us at: <a href="mailto:gdsc@iiits.in">gdsc@iiits.in</a></b>
 				</p>
 			</div>
 			<br />
 			<br />
-
-			<h2 className={`container ${styles.Events} ${classname}`}>
-				<b className={classname}>Our <span className={styles.subheading + " " + classname}>Feature Event</span> & <span className={styles.subheading + " " + classname}>Meetups</span></b>
+			<h2 className={`container ${styles.Events}`}>
+				<b>Our <span className={styles.subheading}>Feature Event</span> & <span className={styles.subheading}>Meetups</span></b>
 			</h2>
-			<div className={`container ${styles.container + " " + classname} ${classname}`}>
-				<p className={styles.maintext + " " + classname}>
+			<div className={`container ${styles.container}`}>
+				<p className={styles.maintext}>
 					Events are listed in reverse chronological order by date.
 				</p>
 			</div>
-
-			<div className={`container ${styles.container} ${classname}`}>
-				<p className={styles.maintext + " " + classname}>
-					<Box sx={classname ? { ...dark, minWidth: 275 } : { minWidth: 275 }}>
-						<Card style={
-							classname ? { ...dark, borderRadius: "100", outline: "solid grey" } : { borderRadius: "100", outline: "solid grey" }
-						}>{<CardOne theme={classname} />}</Card>
+			<div className={`container ${styles.container}`}>
+				<p className={styles.maintext}>
+					<Box sx={{ minWidth: 275 }}>
+						<Card style={{ borderRadius: "100", outline: "solid grey" }
+						}>{<CardOne theme={themeData.theme}/>}</Card>
 					</Box>
 				</p>
 			</div>
-
 			<br />
 			<br />
 			<br />
 			<br />
 			<br />
-
-			<div className={`container ${styles.sameline} ${classname}`}>
-				<h4 className={`container ${styles.Events} ${classname}`}>
-					<span className={styles.subheading + " " + classname}>Directory of past events</span>
+			<div className={`container ${styles.sameline}`}>
+				<h4 className={`container ${styles.Events}`}>
+					<span className={styles.subheading}>Directory of past events</span>
 					<br />
-					<h6 className={classname}>Events are listed in reverse chronological order by date.</h6>
+					<h6 >Events are listed in reverse chronological order by date.</h6>
 				</h4>
-
-				<div className={"col-md-7 " + classname}>
+				<div className={"col-md-7 "}>
 					<input className={"form-control " + classname} name="SEARCH" type="text" placeholder="Search" /> <br />
 				</div>
 			</div>
-			<div className={`container ${styles.container} ${classname}`}>
-				<StickyHeadTable theme={classname} />
+			<div className={`container ${styles.container}`}>
+				<StickyHeadTable theme={themeData.theme} />
 			</div>
-
-
 		</>
 	);
 };

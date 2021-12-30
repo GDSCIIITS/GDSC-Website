@@ -10,9 +10,9 @@ const Navbar = () => {
 	return (
 		<div className={classes["nav-container"] + " " + classname}>
 			<Link to="/" className={classes["nav-logo"] + " " + classname}> GDSC IIITS </Link>
-			<nav className={classname}>
-				<ul className={classes["nav_links"] + " " + classname}>
-					<li className={classname}>
+			<nav>
+				<ul className={classes["nav_links"]}>
+					<li>
 						<Link
 							to="/"
 							className={classes["nav-item"] + " " + classname}
@@ -20,7 +20,7 @@ const Navbar = () => {
 							Home
 						</Link>
 					</li>
-					<li className={classname}>
+					<li>
 						<Link
 							to="/events"
 							className={classes["nav-item"] + " " + classname}
@@ -28,7 +28,7 @@ const Navbar = () => {
 							Events
 						</Link>
 					</li>
-					<li className={classname}>
+					<li>
 						<Link
 							to="/blogs"
 							className={classes["nav-item"] + " " + classname}
@@ -36,7 +36,7 @@ const Navbar = () => {
 							Blogs
 						</Link>
 					</li>
-					<li className={classname}>
+					<li>
 						<Link
 							to="/team"
 							className={classes["nav-item"] + " " + classname}
@@ -52,7 +52,7 @@ const Navbar = () => {
 							Speakers
 						</Link>
 					</li> */}
-					<li className={classname}>
+					<li>
 						<Link
 							to="/about"
 							className={classes["nav-item"] + " " + classname}
@@ -60,7 +60,7 @@ const Navbar = () => {
 							About
 						</Link>
 					</li>
-					<li className={classname}>
+					<li>
 						<Link
 							to="/contact"
 							className={classes["nav-item"] + " " + classname}
@@ -68,7 +68,7 @@ const Navbar = () => {
 							Contact
 						</Link>
 					</li>
-					<li className={classname}>
+					<li>
 						<Toggler />
 					</li>
 				</ul>
