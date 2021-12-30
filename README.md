@@ -1,3 +1,3 @@
 # GDSC-Website
 
-## Deployed URL: https://gdsciiits.netlify.app/
+Deployed URL: https://gdsciiits.netlify.app/
