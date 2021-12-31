@@ -31,7 +31,7 @@ const Navbar = () => {
     <div
       className={
         isNavExpanded
-          ? classes["nav-container-expanded"]
+          ? classes["nav-container-expanded"] + " " + classname
           : classes["nav-container"] + " " + classname
       }
     >
