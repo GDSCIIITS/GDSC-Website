@@ -1,13 +1,16 @@
-import styles from "./About.module.css";
 import React from "react";
-import heroimg from "../assets/herosectionnbg.png";
-import gdsciiits from "../assets/gdsciiits.png";
+import { Helmet } from "react-helmet-async";
 import { styled } from "@mui/material/styles";
+
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+
+import heroimg from "../assets/herosectionnbg.png";
+import gdsciiits from "../assets/gdsciiits.png";
+import styles from "./About.module.css";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -107,6 +110,9 @@ function CustomizedAccordions() {
 const About = () => {
   return (
     <>
+      <Helmet>
+        <title>GDSC IIITS | About</title>
+      </Helmet>
       <h2 className={`container ${styles.about}`}>
         <span className={styles.subheading}>About</span>
       </h2>
@@ -137,13 +143,13 @@ const About = () => {
         </div>
       </div>
       <div className={`container ${styles.container}`}>
-        <p className={styles.maintext}>
+        <div className={styles.maintext}>
           <h2 className={"google-font"}>
             <b>Community Guidelines</b>
           </h2>
-          <p className={"google-font"}>
+          <div className={"google-font"}>
             <CustomizedAccordions />
-          </p>
+          </div>
           <br />
           <br />
           <h2 className={"google-font"}>
@@ -163,7 +169,7 @@ const About = () => {
           <h2 className={"google-font"}>
             <b>Anti Harrasment Policy</b>
           </h2>
-          <p className={"google-font"}>
+          <div className={"google-font"}>
             <h4>
               <b>
                 Why do we have an official Anti-Harassment policy for GDG Sri
@@ -182,7 +188,7 @@ const About = () => {
               event.
               <br />
             </ul>
-          </p>
+          </div>
           <br />
           <h4>
             <b>
@@ -273,7 +279,7 @@ const About = () => {
             <br />
             <br />
           </h6>
-        </p>
+        </div>
       </div>
     </>
   );

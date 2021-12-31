@@ -11,6 +11,7 @@ import Blogs from "./pages/Blogs";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "./store/DarkThemeReducer";
+import { HelmetProvider } from "react-helmet-async";
 import classes from "./App.module.css";
 
 const App = () => {
@@ -21,40 +22,42 @@ const App = () => {
         themeActions.toggleTheme(localStorage.getItem("theme") === "true")
       );
     }
-  }, []);
+  }, [dispatch]);
   const themeData = useSelector((state) => state.DarkMode);
   const classname = themeData.theme ? classes.dark : "";
   return (
     <Router>
-      <div className={classname}>
-        <Navbar />
-        <div style={{ margin: "30px 60px 30px 60px" }}>
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/events" exact>
-              <Events />
-            </Route>
-            <Route path="/team" exact>
-              <Team />
-            </Route>
-            <Route path="/speakers" exact>
-              <Speakers />
-            </Route>
-            <Route path="/about" exact>
-              <About />
-            </Route>
-            <Route path="/contact" exact>
-              <Contact />
-            </Route>
-            <Route path="/blogs" exact>
-              <Blogs />
-            </Route>
-          </Switch>
+      <HelmetProvider>
+        <div className={classname}>
+          <Navbar />
+          <div style={{ margin: "30px 60px 30px 60px" }}>
+            <Switch>
+              <Route path="/" exact>
+                <Home />
+              </Route>
+              <Route path="/events" exact>
+                <Events />
+              </Route>
+              <Route path="/team" exact>
+                <Team />
+              </Route>
+              <Route path="/speakers" exact>
+                <Speakers />
+              </Route>
+              <Route path="/about" exact>
+                <About />
+              </Route>
+              <Route path="/contact" exact>
+                <Contact />
+              </Route>
+              <Route path="/blogs" exact>
+                <Blogs />
+              </Route>
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </HelmetProvider>
     </Router>
   );
 };

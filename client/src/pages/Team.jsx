@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import TeamCard from "../components/TeamCard";
 import { teamMembers } from "../store/team";
@@ -9,6 +10,9 @@ const Team = () => {
   const classname = themeData.theme ? styles.dark : "";
   return (
     <div className={classname}>
+      <Helmet>
+        <title>GDSC IIITS | Team</title>
+      </Helmet>
       <h2 className={`${styles.header_title} ${classname}`}>
         <strong className={classname}>Organizers</strong>
       </h2>

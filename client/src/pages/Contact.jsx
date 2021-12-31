@@ -1,9 +1,14 @@
+import React from "react";
+import { Helmet } from "react-helmet-async";
 import styles from "./Contact.module.css";
 import ContactSVG from "../assets/contact.svg";
 
 const Contact = () => {
   return (
     <>
+      <Helmet>
+        <title>GDSC IIITS | Contact</title>
+      </Helmet>
       <h2 className={`container ${styles.contact}`}>
         <span className={styles.subheading}>Contact</span> GDG Sri City
       </h2>

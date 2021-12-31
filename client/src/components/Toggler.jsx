@@ -3,30 +3,29 @@ import classes from "./Toggler.module.css";
 import { themeActions } from "../store/DarkThemeReducer";
 import { useSelector, useDispatch } from "react-redux";
 
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+
 const Toggler = () => {
   const themeData = useSelector((state) => state.DarkMode);
   const dispatch = useDispatch();
-  const logger = (logs) => {
-    dispatch(themeActions.toggleTheme(logs.target.checked));
+  const toggleDarkMode = () => {
+    dispatch(themeActions.toggleTheme(true));
+  };
+  const toggleLightMode = () => {
+    dispatch(themeActions.toggleTheme(false));
   };
   const classname = themeData.theme ? classes.dark : "";
   return (
-    <div
-      className={
-        "form-check form-switch form-switch-sm " +
-        classes.button +
-        " " +
-        classname
-      }
-    >
-      <input
-        className="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckChecked"
-        onChange={logger}
-        checked={themeData.theme}
-      />
+    <div className={classname}>
+      {themeData.theme ? (
+        <LightModeIcon
+          style={{ cursor: "pointer" }}
+          onClick={toggleLightMode}
+        />
+      ) : (
+        <DarkModeIcon style={{ cursor: "pointer" }} onClick={toggleDarkMode} />
+      )}
     </div>
   );
 };

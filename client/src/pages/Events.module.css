@@ -1,6 +1,6 @@
 .subheading {
   color: #2c7eea;
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .container {
@@ -23,6 +23,7 @@
 
 .sameline {
   display: flex;
+  justify-content: center;
 }
 
 .dark span,

@@ -35,7 +35,7 @@ const Footer = () => {
               className={`d-flex flex-row bd-highlight mb-3 ${classes.icons} ${classname}`}
             >
               <div className={`p-2 bd-highlight ${classname}`}>
-                <a href="#" target="_blank" className={classname}>
+                <a href="/" target="_blank" className={classname}>
                   <i className="bi bi-facebook"></i>
                 </a>
               </div>
@@ -43,6 +43,7 @@ const Footer = () => {
                 <a
                   href="https://twitter.com/gdsciiits"
                   className={classname}
+                  rel="noreferrer"
                   target="_blank"
                 >
                   <i className={"bi bi-twitter " + classname}></i>
@@ -52,6 +53,7 @@ const Footer = () => {
                 <a
                   href="https://www.instagram.com/gdsciiits/"
                   className={classname}
+                  rel="noreferrer"
                   target="_blank"
                 >
                   <i className="bi bi-instagram"></i>
@@ -61,6 +63,7 @@ const Footer = () => {
                 <a
                   href="https://github.com/GDSCIIITS"
                   className={classname}
+                  rel="noreferrer"
                   target="_blank"
                 >
                   <i className="bi bi-github"></i>
@@ -70,13 +73,14 @@ const Footer = () => {
                 <a
                   href="https://in.linkedin.com/company/gdsc-iiit-sri-city"
                   className={classname}
+                  rel="noreferrer"
                   target="_blank"
                 >
                   <i className="bi bi-linkedin"></i>
                 </a>
               </div>
               <div className={`p-2 bd-highlight ${classname}`}>
-                <a href="#" className={classname} target="_blank">
+                <a href="/" className={classname} target="_blank">
                   <i className="bi bi-youtube"></i>
                 </a>
               </div>
