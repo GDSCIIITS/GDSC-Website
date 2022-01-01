@@ -6,7 +6,7 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import StickyHeadTable from "../components/StickHeadTable";
 import EventCard from "../components/EventCard";
-import { events } from "../store/events";
+import { upcomingEvents, pastEvents } from "../store/events";
 import styles from "./Events.module.css";
 
 const Events = () => {
@@ -31,9 +31,11 @@ const Events = () => {
           justifyContent: "center",
         }}
       >
-        {events.map((event) => {
-          return <EventCard key={event.title} event={event} />;
-        })}
+        {upcomingEvents.length > 0
+          ? upcomingEvents.map((event) => {
+              return <EventCard key={event.title} event={event} />;
+            })
+          : "There are no upcoming events!"}
       </div>
       <div
         className={`container ${styles.sameline}`}
@@ -85,11 +87,14 @@ const Events = () => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
+            marginTop: "10px",
           }}
         >
-          {events.map((event) => {
-            return <EventCard key={event.title} event={event} />;
-          })}
+          {pastEvents.length > 0
+            ? pastEvents.map((event) => {
+                return <EventCard key={event.title} event={event} />;
+              })
+            : "There are no past events!"}
         </div>
       ) : (
         <div

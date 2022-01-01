@@ -1,47 +1,29 @@
 .event_card {
   width: 280px;
-  height: 190px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
   border-radius: 15px;
-  padding: 20px;
-  margin: 0% 1% 1% 1%;
+  padding: 20px 20px 10px 20px;
+  font-size: calc(0.5em + 1vmin);
+  margin: 0% 20px 20px 20px;
 }
 
 .event_title {
   color: #4285f4;
-  max-width: 220px;
+  width: 220px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.event_details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.event_speakers {
-  display: flex;
-  align-items: center;
-}
-
 .event_speakers_inner {
   display: flex;
-  margin-left: 10px;
+  margin: 10px 0px 10px 0px;
   align-items: center;
-}
-
-.event_speaker_avatar {
-  height: 30px;
-  width: 30px;
-  margin-bottom: 0.5rem;
-  margin-left: -5px;
-  font-size: 1rem;
 }

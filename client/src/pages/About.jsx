@@ -8,7 +8,8 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 
-import heroimg from "../assets/herosectionnbg.png";
+// import heroimg from "../assets/herosectionnbg.png";
+import heroimg from "../assets/about.png";
 import gdsciiits from "../assets/gdsciiits.png";
 import styles from "./About.module.css";
 

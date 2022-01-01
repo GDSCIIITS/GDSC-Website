@@ -10,6 +10,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableHead from "@mui/material/TableHead";
 
+import { pastEvents } from "../store/events";
+
 const useStyles = makeStyles((theme) => ({
   dark: {
     backgroundColor: "#292929",
@@ -58,18 +60,9 @@ function createData(EventName, code, Venue, more) {
   return { EventName, code, Venue, more };
 }
 
-const rows = [
-  createData("30 Days of Google Cloud", "2021-09-01", "Online", "See more"),
-  createData("Kotlin DEV", "2021-12-01", "Online", "See more"),
-  createData("waiting...", "2021-12-05", "Online/Offline", "See more"),
-  createData("Ola!", "2022-04-23", "Some address", "See more"),
-  createData(
-    "More can be added with pagination",
-    "2022-01-05",
-    "Some address",
-    "See more"
-  ),
-];
+const rows = pastEvents.map((event) =>
+  createData(event.title, event.date, event.venue, "See More")
+);
 
 const StickyHeadTable = (props) => {
   const [page, setPage] = useState(0);
