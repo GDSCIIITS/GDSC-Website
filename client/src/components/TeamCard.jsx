@@ -21,7 +21,11 @@ const TeamCard = (props) => {
         <Avatar
           src={member.avatar ? member.avatar : member.name}
           alt={member.name}
-          style={{ width: "150px", height: "150px" }}
+          style={{
+            width: "150px",
+            height: "150px",
+            boxShadow: "0px 2px 10px rgb(0 0 0 / 15%)",
+          }}
         />
         <h5 className={`${styles.member_name} ${classname}`}>{member.name}</h5>
         <span className={`${styles.member_role} ${classname}`}>

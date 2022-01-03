@@ -84,9 +84,9 @@ export const teamMembers = [
     role: "Design and Management Lead",
     avatar: SashidharMotteAvatar,
     linkedIn: "sashidhar-motte-155726194",
-    github: null,
+    github: "Sashi445",
     twitter: null,
-    instagram: null,
+    instagram: "sashidhar_44",
     googleScholar: null,
   },
   {

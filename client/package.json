@@ -30,6 +30,7 @@
     "react-scripts": "^5.0.0",
     "react-sticky-table": "^5.1.11",
     "redux": "^4.1.2",
+    "typewriter-effect": "^2.18.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -30,11 +30,12 @@ const App = () => {
       <HelmetProvider>
         <div className={classname}>
           <Navbar />
-          <div style={{ margin: "30px 60px 30px 60px" }}>
-            <Switch>
-              <Route path="/" exact>
-                <Home />
-              </Route>
+
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <div style={{ margin: "30px 60px 30px 60px" }}>
               <Route path="/events" exact>
                 <Events />
               </Route>
@@ -53,8 +54,8 @@ const App = () => {
               <Route path="/blogs" exact>
                 <Blogs />
               </Route>
-            </Switch>
-          </div>
+            </div>
+          </Switch>
           <Footer />
         </div>
       </HelmetProvider>

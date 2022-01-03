@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import Logo from "../assets/gdsc_logo.png";
 import classes from "./Navbar.module.css";
 import Toggler from "./Toggler";
 
@@ -37,7 +38,16 @@ const Navbar = () => {
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Link to="/" className={classes["nav-logo"] + " " + classname}>
-          GDSC IIITS
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={Logo}
+              alt="Logo"
+              height="40px"
+              width="40px"
+              style={{ marginRight: "5px" }}
+            />
+            GDSC IIITS
+          </div>
         </Link>
         {isNavExpanded ? (
           <span
