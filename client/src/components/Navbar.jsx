@@ -12,6 +12,28 @@ const Navbar = () => {
   const classname = themeData.theme ? classes.dark : "";
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const navLinks = [
+    {
+      name: "Home",
+      to: "/",
+    },
+    {
+      name: "Events",
+      to: "/events",
+    },
+    {
+      name: "Team",
+      to: "/team",
+    },
+    {
+      name: "About",
+      to: "/about",
+    },
+    {
+      name: "Contact",
+      to: "/contact",
+    },
+  ];
   useEffect(() => {
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
@@ -72,57 +94,30 @@ const Navbar = () => {
       )}
       <nav>
         <ul className={classes["nav_links"]}>
+          {navLinks.map((navLink) => {
+            return (
+              <li>
+                <NavLink
+                  exact
+                  to={navLink.to}
+                  className={classes["nav-item"] + " " + classname}
+                  activeClassName={classes.active}
+                  onClick={() => {
+                    if (isNavExpanded) {
+                      setIsNavExpanded(false);
+                    }
+                  }}
+                >
+                  {navLink.name}
+                </NavLink>
+              </li>
+            );
+          })}
           <li>
-            <NavLink to="/" activeClassName={classes.active} className={classes["nav-item"] + " " + classname} exact>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/events"
-              activeClassName={classes.active}
-              className={classes["nav-item"] + " " + classname}
-            >
-              Events
-            </NavLink>
-          </li>
-          {/* <li>
-				<Link
-					to="/blogs"
-					className={classes["nav-item"] + " " + classname}
-				>
-					Blogs
-				</Link>
-			</li> */}
-          <li>
-            <NavLink to="/team" activeClassName={classes.active} className={classes["nav-item"] + " " + classname}>
-              Team
-            </NavLink>
-          </li>
-          {/* <li>
-				<Link
-					to="/speakers"
-					className="nav-item"
-				>
-					Speakers
-				</Link>
-			</li> */}
-          <li>
-            <NavLink to="/about" activeClassName={classes.active} className={classes["nav-item"] + " " + classname}>
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              activeClassName={classes.active}
-              className={classes["nav-item"] + " " + classname}
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <Toggler />
+            <Toggler
+              isNavExpanded={isNavExpanded}
+              setIsNavExpanded={setIsNavExpanded}
+            />
           </li>
         </ul>
       </nav>

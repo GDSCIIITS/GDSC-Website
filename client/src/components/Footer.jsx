@@ -22,6 +22,7 @@ const Footer = () => {
             <a
               href="https://github.com/GDSCIIITS/GDSC-Website"
               className={classname}
+              style={{ color: "black" }}
             >
               {" "}
               <span>GDSCIIITS</span>
