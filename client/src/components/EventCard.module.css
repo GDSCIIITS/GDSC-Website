@@ -27,3 +27,7 @@
   margin: 10px 0px 10px 0px;
   align-items: center;
 }
+
+.dark .event_card {
+  background-color: #292929;
+}

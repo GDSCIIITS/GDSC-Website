@@ -30,7 +30,7 @@ export const teamMembers = [
     googleScholar: null,
   },
   {
-    name: "Shreyas Mishra",
+    name: "Shreyash Mishra",
     role: "AI/ML Lead",
     avatar: ShreyasMishraAvatar,
     linkedIn: "shreyash-mishra",
@@ -71,7 +71,7 @@ export const teamMembers = [
   },
   {
     name: "Mahaboob Shaik",
-    role: "Design and Management Lead",
+    role: "App Development Lead",
     avatar: MahaboobShaikAvatar,
     linkedIn: "mahaboobshaik-developer",
     github: "bannu0snake",

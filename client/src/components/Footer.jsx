@@ -16,7 +16,7 @@ const Footer = () => {
         <Content name={classname} />
       </div>
       <div className={`container ${classes.trailing} ${classname}`}>
-        <div className="row">
+        <div className="row d-flex justify-content-between">
           <div className={`col-md-9 col-sm-12 ${classes.ref} ${classname}`}>
             &copy;{" "}
             <a
@@ -24,21 +24,16 @@ const Footer = () => {
               className={classname}
             >
               {" "}
-              GDSCIIITS
+              <span>GDSCIIITS</span>
             </a>
             , All rights reserved.
           </div>
           <div
-            className={`col-md-3 col-sm-12 ${classes.social_media} ${classname}`}
+            className={`col-md-2 col-sm-12 ${classes.social_media} ${classname}`}
           >
             <div
               className={`d-flex flex-row bd-highlight mb-3 ${classes.icons} ${classname}`}
             >
-              <div className={`p-2 bd-highlight ${classname}`}>
-                <a href="/" target="_blank" className={classname}>
-                  <i className="bi bi-facebook"></i>
-                </a>
-              </div>
               <div className={`p-2 bd-highlight ${classname}`}>
                 <a
                   href="https://twitter.com/gdsciiits"
@@ -77,11 +72,6 @@ const Footer = () => {
                   target="_blank"
                 >
                   <i className="bi bi-linkedin"></i>
-                </a>
-              </div>
-              <div className={`p-2 bd-highlight ${classname}`}>
-                <a href="/" className={classname} target="_blank">
-                  <i className="bi bi-youtube"></i>
                 </a>
               </div>
             </div>

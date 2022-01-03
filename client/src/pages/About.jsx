@@ -145,17 +145,17 @@ const About = () => {
       </div>
       <div className={`container ${styles.container}`}>
         <div className={styles.maintext}>
-          <h2 className={"google-font"}>
+          <h2 id="community-guidelines">
             <b>Community Guidelines</b>
           </h2>
-          <div className={"google-font"}>
+          <div>
             <CustomizedAccordions />
           </div>
           <br />
           <br />
-          <h2 className={"google-font"}>
+          <h2>
             {" "}
-            <b>Code of Conduct</b>
+            <b id="code-of-conduct">Code of Conduct</b>
           </h2>
           When you join our programs, you're joining a community. And like any
           growing community, a few ground rules about expected behavior are good
@@ -167,10 +167,10 @@ const About = () => {
           <br />
           <br />
           <br />
-          <h2 className={"google-font"}>
+          <h2>
             <b>Anti Harrasment Policy</b>
           </h2>
-          <div className={"google-font"}>
+          <div>
             <h4>
               <b>
                 Why do we have an official Anti-Harassment policy for GDG Sri

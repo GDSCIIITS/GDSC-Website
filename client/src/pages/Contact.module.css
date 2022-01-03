@@ -29,3 +29,9 @@
   color: white;
   border-color: #2c7eea;
 }
+
+@media screen and (max-width: 800px){
+  .container img {
+    display: none;
+  }
+}

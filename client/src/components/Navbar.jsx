@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../assets/gdsc_logo.png";
@@ -73,17 +73,18 @@ const Navbar = () => {
       <nav>
         <ul className={classes["nav_links"]}>
           <li>
-            <Link to="/" className={classes["nav-item"] + " " + classname}>
+            <NavLink to="/" activeClassName={classes.active} className={classes["nav-item"] + " " + classname} exact>
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/events"
+              activeClassName={classes.active}
               className={classes["nav-item"] + " " + classname}
             >
               Events
-            </Link>
+            </NavLink>
           </li>
           {/* <li>
 				<Link
@@ -94,9 +95,9 @@ const Navbar = () => {
 				</Link>
 			</li> */}
           <li>
-            <Link to="/team" className={classes["nav-item"] + " " + classname}>
+            <NavLink to="/team" activeClassName={classes.active} className={classes["nav-item"] + " " + classname}>
               Team
-            </Link>
+            </NavLink>
           </li>
           {/* <li>
 				<Link
@@ -107,17 +108,18 @@ const Navbar = () => {
 				</Link>
 			</li> */}
           <li>
-            <Link to="/about" className={classes["nav-item"] + " " + classname}>
+            <NavLink to="/about" activeClassName={classes.active} className={classes["nav-item"] + " " + classname}>
               About
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/contact"
+              activeClassName={classes.active}
               className={classes["nav-item"] + " " + classname}
             >
               Contact
-            </Link>
+            </NavLink>
           </li>
           <li>
             <Toggler />

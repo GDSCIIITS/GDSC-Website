@@ -11,7 +11,7 @@
 
 .icons i {
   font-size: 1rem;
-  margin: 0 0.2em;
+  /* margin: 0 0.2em; */
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -152,6 +152,9 @@
   .icons {
     margin-left: -1em;
   }
+}
+.dark span {
+  color: #2c7eea;
 }
 
 .dark,

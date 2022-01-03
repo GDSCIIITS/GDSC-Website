@@ -11,6 +11,7 @@ import styles from "./Events.module.css";
 
 const Events = () => {
   const themeData = useSelector((state) => state.DarkMode);
+  const dark = {color: 'white', backgroundColor: '#121212'}
   const [gridView, setGridView] = useState(true);
   // const classname = themeData.theme ? styles.dark : "";
   return (
@@ -35,7 +36,7 @@ const Events = () => {
           ? upcomingEvents.map((event) => {
               return <EventCard key={event.title} event={event} />;
             })
-          : "There are no upcoming events!"}
+          : <p style={{color: themeData.theme ? '#F4B400' : '#0F9D58'}}>There are no upcoming events!</p>}
       </div>
       <div
         className={`container ${styles.sameline}`}
@@ -68,7 +69,7 @@ const Events = () => {
             }
           }}
         >
-          <GridViewIcon fontSize="small" />
+          <GridViewIcon fontSize="small" sx={themeData.theme ? dark : ""} />
         </IconButton>
         <IconButton
           style={{ height: "35px", width: "35px" }}
@@ -78,7 +79,7 @@ const Events = () => {
             }
           }}
         >
-          <TableRowsIcon fontSize="small" />
+          <TableRowsIcon fontSize="small" sx={themeData.theme ? dark : ""} />
         </IconButton>
       </div>
       {gridView ? (
@@ -94,7 +95,7 @@ const Events = () => {
             ? pastEvents.map((event) => {
                 return <EventCard key={event.title} event={event} />;
               })
-            : "There are no past events!"}
+            : <p style={{color: themeData.theme ? '#F4B400' : '#0F9D58'}}>There are no past events!</p>}
         </div>
       ) : (
         <div
