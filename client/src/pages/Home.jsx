@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useSelector } from "react-redux";
 import Typewriter from "typewriter-effect";
 import Button from "@mui/material/Button";
-import GoogleDevelopersIcon from "../assets/logo.svg";
+import GoogleDevelopersIcon from "../assets/gdsc_logo.png";
 import GoogleDevelopersIcon2 from "../assets/touchicon-180.png";
 import GDSC from "../assets/gdsc.png";
 import { Divider } from "@mui/material";

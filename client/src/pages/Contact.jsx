@@ -10,7 +10,7 @@ const Contact = () => {
         <title>GDSC IIITS | Contact</title>
       </Helmet>
       <h2 className={`container ${styles.contact}`}>
-        <span className={styles.subheading}>Contact</span> GDG Sri City
+        <span className={styles.subheading}>Contact</span> GDSC Sri City
       </h2>
       <div className={`container ${styles.container}`}>
         <p className={styles.maintext}>

@@ -1,5 +1,5 @@
 .homepage_main {
-  background: url(../assets/banner.png) no-repeat center center;
+  background: url(../assets/banner-removebg-preview.png) no-repeat center center;
   background-size: cover;
 }
 
@@ -21,7 +21,8 @@
 
 .gdsclogo {
   margin-right: 10px;
-  width: 15vw;
+  width: 13vw;
+  transform: rotate(-30deg);
 }
 
 .joinus_btns {
@@ -72,4 +73,8 @@
   background-color: #121212;
   color: white;
   border-color: #2c7eea;
+}
+
+.dark .gdsclogo {
+  background-color: transparent;
 }
