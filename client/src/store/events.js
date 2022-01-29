@@ -1,3 +1,64 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialEvents = {
+  upComingEvents: [],
+  pastEvents: [],
+};
+
+const eventSlice = createSlice({
+  name: "events",
+  initialState: initialEvents,
+  reducers: {
+    addEvents(state, action) {
+      state.pastEvents = action.payload.filter(item => item.status === 'Completed')
+      state.upComingEvents = action.payload.filter(item => item.status === 'Not started' || item.status === 'Going on')
+    }
+  },
+});
+
+export const eventActions = eventSlice.actions;
+
+export default eventSlice.reducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const upcomingEvents = [
   // {
   //   title: "Introduction Session for UG-1",
@@ -5,6 +66,7 @@ export const upcomingEvents = [
   //   time: "7PM",
   //   venue: "Online",
   //   speakers: ["Kush Gupta", "Abhay Ray"],
+  //   status: 'upcoming'
   // },
 ];
 
@@ -21,7 +83,8 @@ export const pastEvents = [
       "Abhinay Bathina",
       "Surya Teja",
     ],
-    link: 'https://gdsc.community.dev/events/details/developer-student-clubs-indian-institute-of-information-technology-sri-city-presents-introduction-to-android-app-development-using-kotlin/'
+    link: 'https://gdsc.community.dev/events/details/developer-student-clubs-indian-institute-of-information-technology-sri-city-presents-introduction-to-android-app-development-using-kotlin/',
+    status: 'past'
   },
   {
     title: "Introduction Session",
@@ -29,6 +92,8 @@ export const pastEvents = [
     time: "7PM",
     venue: "Online",
     speakers: ["Siddharth Pandey"],
-    link: 'https://gdsc.community.dev/events/details/developer-student-clubs-indian-institute-of-information-technology-sri-city-presents-introductory-session/'
+    link: 'https://gdsc.community.dev/events/details/developer-student-clubs-indian-institute-of-information-technology-sri-city-presents-introductory-session/',
+    status: 'past'
   },
 ];
+

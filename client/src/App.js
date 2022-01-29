@@ -13,6 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { themeActions } from "./store/DarkThemeReducer";
 import { HelmetProvider } from "react-helmet-async";
 import classes from "./App.module.css";
+import Admin from "./admin/Admin";
+import EventForm from "./admin/EventForm";
+import SpeakerForm from "./admin/SpeakerForm";
+import AdminAuth from "./admin/AdminAuth";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,10 +32,24 @@ const App = () => {
   return (
     <Router>
       <HelmetProvider>
-        <div className={classname}>
-          <Navbar />
-
-          <Switch>
+        <Switch>
+          <Route path="/admin">
+            <Admin>
+              <Route path="/admin" exact>
+                <AdminAuth />
+              </Route>
+              <Route path="/admin/events" exact></Route>
+              <Route path="/admin/speakers" exact></Route>
+              <Route path="/admin/create-event" exact>
+                <EventForm />
+              </Route>
+              <Route path="/admin/create-speaker" exact>
+                <SpeakerForm />
+              </Route>
+            </Admin>
+          </Route>
+          <div className={classname}>
+            <Navbar />
             <Route path="/" exact>
               <Home />
             </Route>
@@ -54,10 +72,10 @@ const App = () => {
               <Route path="/blogs" exact>
                 <Blogs />
               </Route>
+              <Footer />
             </div>
-          </Switch>
-          <Footer />
-        </div>
+          </div>
+        </Switch>
       </HelmetProvider>
     </Router>
   );
