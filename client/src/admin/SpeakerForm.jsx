@@ -2,6 +2,10 @@ import { Close } from '@mui/icons-material'
 import { CircularProgress, IconButton, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { eventActions } from '../store/events'
+import { sendSpeaker } from './admin-actions'
 
 const SpeakerForm = () => {
     const [data, setData] = useState({
@@ -12,6 +16,9 @@ const SpeakerForm = () => {
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(false)
     const [photo, setPhoto] = useState()
+    const history = useHistory()
+    const dispatch = useDispatch()
+
     const photoHandler = (event) => {
         setPhoto(event.target.files[0])
     }
@@ -41,15 +48,11 @@ const SpeakerForm = () => {
         const photoData = new FormData()
         photoData.append("file", photo)
         photoData.append("upload_preset", "gdsc-iiits-174")
-        axios.post("https://api.cloudinary.com/v1_1/gdsc-iiits/image/upload", photoData).then((response) => {
-            const body = {
-                ...data,
-                photo: response.data.url
-            }
-            axios.post("http://localhost:5000/api/speakers", body).then((response2) => {
-                console.log(response2)
-                setLoading(false)
-            })
+        dispatch(sendSpeaker(photoData, data)).then((response) => {
+            console.log(response)
+            dispatch(eventActions.addSpeaker(response.body))
+            setLoading(false)
+            history.push("/admin/speakers")
         })
     }
 
