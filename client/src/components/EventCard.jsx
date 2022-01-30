@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import { tooltipClasses } from "@mui/material";
+import { Box, Modal, tooltipClasses } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import styles from "./EventCard.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import {deleteEvent} from "../admin/admin-actions"
+import { eventActions } from "../store/events";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -17,9 +20,22 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 });
 
 const EventCard = (props) => {
-  const { event } = props;
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
+
+  const { event, isAdmin } = props;
   const themeData = useSelector((state) => state.DarkMode);
-  const speakers = useSelector((state) => state.events.speakers)
+  const speakers = useSelector((state) => state.activity.speakers);
   const classname = themeData.theme ? styles.dark : "";
   const colors = ["#DB4437", "#F4B400", "#0F9D58"];
 
@@ -28,29 +44,63 @@ const EventCard = (props) => {
     if (newWindow) newWindow.opener = null;
   };
 
-  const eventDate = new Date(event.date)
+  const eventDate = new Date(event.date);
 
   const getSpeakers = () => {
-    let speakerList = []
+    let speakerList = [];
     speakers.forEach((item, index) => {
-      if(event.speakers.includes(item._id)) {
-        speakerList.push(item)
+      if (event.speakers.includes(item._id)) {
+        speakerList.push(item);
       }
-    })
-    return speakerList
-  }
+    });
+    return speakerList;
+  };
 
-  const eventSpeakers = getSpeakers()
+  const eventSpeakers = getSpeakers();
+  const [open, setOpen] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const deleteHandler = () => {
+    dispatch(deleteEvent(event._id)).then((response) => {
+      console.log(response)
+      dispatch(eventActions.deleteEvent(event._id));
+      setOpen(false);
+    });
+  };
 
   return (
     <div className={classname}>
+      <Modal
+        open={open}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box sx={{ ...style, width: 400 }}>
+          <h2 id="parent-modal-title">Are you sure?</h2>
+          <p id="parent-modal-description">
+            Deleting this event will remove all the data related to this
+            event
+          </p>
+          <div className="container d-flex justify-content-between">
+            <Button
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Cancel
+            </Button>
+            <button className="btn btn-danger" onClick={deleteHandler}>
+              Delete
+            </button>
+          </div>
+        </Box>
+      </Modal>
       <div className={styles.event_card}>
         <Tooltip title={event.title} placement="top">
           <h5 className={styles.event_title}>{event.title}</h5>
         </Tooltip>
-        <span style={{ marginBottom: "5px" }}>
-          {eventDate.toUTCString()}
-        </span>
+        <span style={{ marginBottom: "5px" }}>{eventDate.toUTCString()}</span>
         {event.venue}
         <Divider
           style={{ width: "100%", marginTop: "10px", marginBottom: "10px" }}
@@ -86,6 +136,24 @@ const EventCard = (props) => {
             )}
           </div>
         </div>
+        { isAdmin && <div className="container d-flex justify-content-between">
+          <Button
+            style={{ textTransform: "none" }}
+            onClick={() => {
+              history.push(`/admin/event-form?id=${event._id}`);
+            }}
+          >
+            Edit event
+          </Button>
+          <Button
+            style={{ textTransform: "none", color: "red" }}
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            Delete
+          </Button>
+        </div>}
         <Button style={{ textTransform: "none" }} onClick={() => {
           openInNewTab(event.link)
         }}>See More</Button>

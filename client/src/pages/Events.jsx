@@ -12,8 +12,9 @@ const Events = () => {
   const themeData = useSelector((state) => state.DarkMode);
   const dark = {color: 'white', backgroundColor: '#121212'}
   const [gridView, setGridView] = useState(true);
-  const upcomingEvents = useSelector(state => state.events.upComingEvents)
-  const pastEvents = useSelector(state => state.events.pastEvents)
+  const events = useSelector(state => state.activity.events)
+  const upcomingEvents = events.filter(event => event.status !== "Completed")
+  const pastEvents = events.filter(event => event.status === "Completed")
 
   return (
     <div>

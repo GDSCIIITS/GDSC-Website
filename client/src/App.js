@@ -31,11 +31,15 @@ const App = () => {
     }
     dispatch(getEvents()).then((response) => {
       console.log(response);
-      dispatch(eventActions.setEvents(response));
+      if (response !== "failure") {
+        dispatch(eventActions.setEvents(response));
+      }
     });
     dispatch(getSpeakers()).then((response) => {
       console.log(response);
-      dispatch(eventActions.setSpeakers(response));
+      if (response !== "failure") {
+        dispatch(eventActions.setSpeakers(response));
+      }
     });
   }, [dispatch]);
   const themeData = useSelector((state) => state.DarkMode);

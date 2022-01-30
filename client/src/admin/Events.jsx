@@ -9,9 +9,9 @@ import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 const AdminEvents = () => {
-  const pastEvents = useSelector(state => state.events.pastEvents)
-  const upComingEvents = useSelector(state => state.events.upComingEvents)
-  console.log(pastEvents, upComingEvents)
+  const events = useSelector(state => state.activity.events)
+  const pastEvents = events.filter(event => event.status === 'Completed')
+  const upComingEvents = events.filter(event => event.status !== 'Completed')
 
     const [gridView, setGridView] = useState(true);
     // const classname = themeData.theme ? styles.dark : "";
@@ -43,8 +43,8 @@ const AdminEvents = () => {
           }}
         >
           {upComingEvents.length > 0
-            ? upComingEvents.map((event) => {
-                return <EventCard key={event.title} event={event} />;
+            ? upComingEvents.map((event, index) => {
+                return <EventCard key={index} event={event} isAdmin={true} />;
               })
             : <p>There are no upcoming events!</p>}
         </div>
@@ -55,14 +55,6 @@ const AdminEvents = () => {
           <h2>
             <strong>Past Events</strong>
           </h2>
-          {/* <div className={"col-md-6 "}>
-            <input
-              className={"form-control " + classname}
-              name="SEARCH"
-              type="text"
-              placeholder="Search"
-            />{" "}
-          </div> */}
         </div>
         <div
           style={{
@@ -103,7 +95,7 @@ const AdminEvents = () => {
           >
             {pastEvents.length > 0
               ? pastEvents.map((event) => {
-                  return <EventCard key={event.title} event={event} />;
+                  return <EventCard key={event.title} event={event} isAdmin={true} />;
                 })
               : <p>There are no past events!</p>}
           </div>
