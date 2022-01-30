@@ -1,0 +1,40 @@
+.subheading {
+  color: #2c7eea;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.container img {
+  width: 17%;
+}
+
+.maintext {
+  font-weight: 500;
+  margin-right: 7%;
+}
+
+.background {
+  background-color: #9e9e9e;
+}
+
+.sameline {
+  display: flex;
+  justify-content: center;
+}
+
+.dark span,
+.dark a {
+  color: #2c7eea;
+}
+
+.dark,
+.dark i,
+.dark img {
+  background-color: #121212;
+  color: white;
+  border-color: #2c7eea;
+}

@@ -16,3 +16,22 @@
   font-weight: 500;
   margin-right: 7%;
 }
+
+.dark span,
+.dark a {
+  color: #2c7eea;
+}
+
+.dark,
+.dark i,
+.dark img {
+  background-color: #121212;
+  color: white;
+  border-color: #2c7eea;
+}
+
+@media screen and (max-width: 800px){
+  .container img {
+    display: none;
+  }
+}

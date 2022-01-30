@@ -1,0 +1,80 @@
+.homepage_main {
+  background: url(../assets/banner-new.png) no-repeat center center;
+  background-size: cover;
+}
+
+.homepage {
+  font-size: 15vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: calc(100vh - 80px);
+}
+
+.gdsciiits {
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+}
+
+.gdsclogo {
+  margin-right: 10px;
+  width: 13vw;
+  transform: rotate(-30deg);
+}
+
+.joinus_btns {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20vh;
+}
+
+.about_us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vw;
+}
+
+.about_us_content {
+  width: 45%;
+}
+
+.subheading {
+  font-size: 4vmin;
+}
+
+.description {
+  color: #828282;
+  margin-top: 1vh;
+  font-size: 2.8vmin;
+}
+
+@media only screen and (max-width: 850px) {
+  .about_us {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 5vw;
+  }
+
+  .about_us_content {
+    width: 80%;
+    margin-bottom: 3vh;
+  }
+}
+
+.dark,
+.dark i,
+.dark img {
+  background-color: #121212;
+  color: white;
+  border-color: #2c7eea;
+}
+
+.dark .gdsclogo {
+  background-color: transparent;
+}

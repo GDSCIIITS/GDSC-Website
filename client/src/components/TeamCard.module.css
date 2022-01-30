@@ -1,0 +1,49 @@
+.team_card {
+  width: 200px;
+  margin-bottom: 50px;
+  margin-left: 2%;
+  margin-right: 2%;
+  background-color: transparent;
+}
+
+.team_card_main {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(50, 50, 50, 0.2) 0px 7px 29px 0px;
+}
+
+.member_name {
+  margin-top: 20px;
+  color: #4285f4;
+}
+
+.member_role {
+  font-size: 0.7rem;
+}
+
+.social_media_icon {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.icons_container {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.dark h5 {
+  color: #f4b400;
+}
+
+.dark,
+.dark i,
+.dark img {
+  background-color: #272727;
+  color: white;
+  border-color: #2c7eea;
+}

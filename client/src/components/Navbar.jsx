@@ -1,73 +1,128 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.module.css";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import Logo from "../assets/gdsc_logo.png";
+import classes from "./Navbar.module.css";
+import Toggler from "./Toggler";
 
 const Navbar = () => {
-	return (
-		<div className="nav-container">
-			<Link to="/" className="nav-logo"> GDSC IIITS </Link>
-			<nav>	
-				<ul className="nav_links">
-					<li>
-						<Link
-							to="/"
-							className="nav-item"
-						>
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/events"
-							className="nav-item"
-						>
-							Events
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/blogs"
-							className="nav-item"
-						>
-							Blogs
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/team"
-							className="nav-item"
-						>
-							Team
-						</Link>
-					</li>
-					{/* <li>
-						<Link
-							to="/speakers"
-							className="nav-item"
-						>
-							Speakers
-						</Link>
-					</li> */}
-					<li>
-						<Link
-							to="/about"
-							className="nav-item"
-						>
-							About
-						</Link>
-					</li>
-					<li>
-						<Link
-							to="/contact"
-							className="nav-item"
-						>
-							Contact
-						</Link>
-					</li>
-				</ul>
-			</nav>
-		</div>
-	);
+  const themeData = useSelector((state) => state.DarkMode);
+  const classname = themeData.theme ? classes.dark : "";
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const navLinks = [
+    {
+      name: "Home",
+      to: "/",
+    },
+    {
+      name: "Events",
+      to: "/events",
+    },
+    {
+      name: "Team",
+      to: "/team",
+    },
+    {
+      name: "About",
+      to: "/about",
+    },
+    {
+      name: "Contact",
+      to: "/contact",
+    },
+  ];
+  useEffect(() => {
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", changeWidth);
+    return () => {
+      window.removeEventListener("resize", changeWidth);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (screenWidth > 850 && isNavExpanded) {
+      setIsNavExpanded(false);
+    }
+  }, [screenWidth, isNavExpanded]);
+
+  return (
+    <div
+      className={
+        isNavExpanded
+          ? classes["nav-container-expanded"] + " " + classname
+          : classes["nav-container"] + " " + classname
+      }
+    >
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Link to="/" className={classes["nav-logo"] + " " + classname}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              src={Logo}
+              alt="Logo"
+              height="40px"
+              width="40px"
+              style={{ marginRight: "5px" }}
+            />
+            GDSC IIITS
+          </div>
+        </Link>
+        {isNavExpanded ? (
+          <span
+            className={classes["close-icon"]}
+            onClick={() => setIsNavExpanded(false)}
+          >
+            <CloseIcon />
+          </span>
+        ) : (
+          ""
+        )}
+      </div>
+      {isNavExpanded ? (
+        ""
+      ) : (
+        <span
+          className={classes["menu-icon"]}
+          onClick={() => setIsNavExpanded(true)}
+        >
+          <MenuIcon />
+        </span>
+      )}
+      <nav>
+        <ul className={classes["nav_links"]}>
+          {navLinks.map((navLink) => {
+            return (
+              <li>
+                <NavLink
+                  exact
+                  to={navLink.to}
+                  className={classes["nav-item"] + " " + classname}
+                  activeClassName={classes.active}
+                  onClick={() => {
+                    if (isNavExpanded) {
+                      setIsNavExpanded(false);
+                    }
+                  }}
+                >
+                  {navLink.name}
+                </NavLink>
+              </li>
+            );
+          })}
+          <li>
+            <Toggler
+              isNavExpanded={isNavExpanded}
+              setIsNavExpanded={setIsNavExpanded}
+            />
+          </li>
+        </ul>
+      </nav>
+    </div>
+  );
 };
 
 export default Navbar;
