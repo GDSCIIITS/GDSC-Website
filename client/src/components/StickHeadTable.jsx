@@ -64,7 +64,7 @@ const StickyHeadTable = (props) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const darkTheme = useStyles();
   const label = useStyles2();
-  const pastEvents = useSelector((state) => state.events.pastEvents);
+  const pastEvents = useSelector((state) => state.activity.events.filter(event => event.status === 'Completed'));
 
   const rows = pastEvents.map((event) =>
     createData(event.title, event.date, event.venue, "See More")

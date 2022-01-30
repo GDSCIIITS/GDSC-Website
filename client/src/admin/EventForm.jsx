@@ -2,15 +2,21 @@ import { Close } from '@mui/icons-material'
 import { CircularProgress, IconButton, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import Select from 'react-select'
 import { eventActions } from '../store/events'
-import { sendEvent } from './admin-actions'
+import { sendEvent, updateEvent } from './admin-actions'
 import styles from './EventForm.module.css'
 
 
 const EventForm = () => {
-    const speakers = useSelector(state => state.events.speakers)
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id")
+    const speakers = useSelector(state => state.activity.speakers)
+    const events = useSelector(state => state.activity.events)
+    const thisEvent = events.filter(item => item._id === id)
     const getOptions = () => {
         const options = []
         speakers.forEach((speaker, index) => {
@@ -19,16 +25,39 @@ const EventForm = () => {
         return options
     }
 
+    const getSpeakers = (s) => {
+        const speakerList = []
+        s.forEach((item, index) => {
+            speakerList.push({
+                value: item,
+                label: speakers.filter(item2 => item2._id === item)[0].name
+            })
+        })
+        return speakerList
+    }
+
     const options = getOptions()
     const dispatch = useDispatch()
-    const [data, setData] = useState({
+
+    const thisDate = id ? new Date(thisEvent[0].date) : ''
+
+    const initData = id ? {
+        title: thisEvent[0].title,
+        description: thisEvent[0].description,
+        speakers: getSpeakers(thisEvent[0].speakers),
+        status: thisEvent[0].status,
+        date: thisDate.toISOString().slice(0, 16),
+        venue: thisEvent[0].venue
+    } :{
         title: '',
         description: '',
         speakers: [],
-        status: '',
+        status: 'none',
         date: '',
         venue: ''
-    })
+    }
+
+    const [data, setData] = useState(initData)
     const [errors, setErrors] = useState([])
     const [loading, setLoading] = useState(false)
     const history = useHistory()
@@ -56,15 +85,23 @@ const EventForm = () => {
             setErrors(errorList)
             return
         }
-        const date = new Date(data.date)
-        dispatch(sendEvent({...data, date: date})).then((response) => {
-            console.log(response)
-            dispatch(eventActions.addEvent({...data, date: date}))
-            setLoading(false)
-            history.push("/admin/events")
-        })
+        if(!id) {
+            dispatch(sendEvent({...data })).then((response) => {
+                console.log(response.payload, "Here i am")
+                dispatch(eventActions.addEvent(response.payload))
+                setLoading(false)
+                history.push("/admin/events")
+            })
+        } else {
+            dispatch(updateEvent({...data, _id: id})).then((response) => {
+                console.log(response.body)
+                dispatch(eventActions.updateEvent(response.body))
+                setLoading(false)
+                history.push("/admin/events")
+            })
+        }
     }
-      
+    console.log(data.speakers)
     return (
         loading ? <div className='container d-flex justify-content-center'>
             <CircularProgress />
@@ -86,16 +123,16 @@ const EventForm = () => {
                     </div>
                     })}
                     <div className="col-md-12 col-sm-12 col-lg-12">
-                        <TextField label="Title of the event" sx={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, title: event.target.value})}} required/>
+                        <TextField label="Title of the event" value={data.title} sx={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, title: event.target.value})}} required/>
                     </div>
                     <div className="col-md-12 col-sm-12 col-lg-12">
-                        <TextField multiline rows={4} label="Description of the event" sx={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, description: event.target.value})}} required/>
+                        <TextField multiline value={data.description} rows={4} label="Description of the event" sx={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, description: event.target.value})}} required/>
                     </div>
                     <div className="col-md-12 col-sm-12 col-lg-12">
-                        <Select options={options} className={styles.speakers} placeholder={"Select Speakers"} isMulti={true} onChange={multiHandler}/>
+                        <Select options={options} value={data.speakers} className={styles.speakers} placeholder={"Select Speakers"} isMulti={true} onChange={multiHandler}/>
                     </div>
                     <div className="col-md-12 col-sm-12 col-lg-12">
-                        <select defaultValue={"none"} className="form-select mb-3 shadow-none" aria-label="Default select example" style={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, status: event.target.value})}} required>
+                        <select defaultValue={data.status} className="form-select mb-3 shadow-none" aria-label="Default select example" style={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, status: event.target.value})}} required>
                             <option value="none" disabled>Status of the event</option>
                             <option value="Going on">Going on</option>
                             <option value="Completed">Completed</option>
@@ -104,10 +141,10 @@ const EventForm = () => {
                     </div>
                     <div className="col-md-12 col-sm-12 col-lg-12">
                         <label htmlFor="" style={{ width: '90%', margin: '0em 1em' }}>Date & Time of the event</label>
-                        <input className="form-control shadow-none" id="datetime-local" type="datetime-local" style={{ width: '90%', margin: '0.6em 1em' }} onChange={(event) => {setData({...data, date: event.target.value})}} required/>
+                        <input className="form-control shadow-none" value={data.date} id="datetime-local" type="datetime-local" style={{ width: '90%', margin: '0.6em 1em' }} onChange={(event) => {setData({...data, date: event.target.value})}} required/>
                     </div>
                     <div className="col-md-12 col-sm-12 col-lg-12">
-                        <TextField label="Venue of the event" sx={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, venue: event.target.value})}} required/>
+                        <TextField label="Venue of the event" value={data.venue} sx={{ width: '90%', margin: '0.4em 1em' }} onChange={(event) => {setData({...data, venue: event.target.value})}} required/>
                     </div>
                     <button type='submit' className='btn btn-primary shadow-none' style={{ margin: '0.4em 1em' }}>Submit</button>
                 </form>

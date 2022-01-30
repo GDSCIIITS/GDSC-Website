@@ -5,8 +5,8 @@ import SpeakerCard from "../components/SpeakerCard";
 import { useSelector } from "react-redux";
 
 const AdminSpeakers = () => {
-  const speakers = useSelector((state) => state.events.speakers);
-  
+  const speakers = useSelector((state) => state.activity.speakers);
+  console.log(speakers)
   return (
     <div>
       <div
@@ -38,7 +38,7 @@ const AdminSpeakers = () => {
       >
         {speakers.length > 0 ? (
           speakers.map((speaker, index) => {
-            return <SpeakerCard key={index} speaker={speaker} />;
+            return <SpeakerCard key={index} speaker={speaker} isAdmin={true} />;
           })
         ) : (
           <p>There are no speakers!</p>
