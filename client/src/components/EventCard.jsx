@@ -19,6 +19,7 @@ const CustomWidthTooltip = styled(({ className, ...props }) => (
 const EventCard = (props) => {
   const { event } = props;
   const themeData = useSelector((state) => state.DarkMode);
+  const speakers = useSelector((state) => state.events.speakers)
   const classname = themeData.theme ? styles.dark : "";
   const colors = ["#DB4437", "#F4B400", "#0F9D58"];
 
@@ -27,6 +28,20 @@ const EventCard = (props) => {
     if (newWindow) newWindow.opener = null;
   };
 
+  const eventDate = new Date(event.date)
+
+  const getSpeakers = () => {
+    let speakerList = []
+    speakers.forEach((item, index) => {
+      if(event.speakers.includes(item._id)) {
+        speakerList.push(item)
+      }
+    })
+    return speakerList
+  }
+
+  const eventSpeakers = getSpeakers()
+
   return (
     <div className={classname}>
       <div className={styles.event_card}>
@@ -34,7 +49,7 @@ const EventCard = (props) => {
           <h5 className={styles.event_title}>{event.title}</h5>
         </Tooltip>
         <span style={{ marginBottom: "5px" }}>
-          {event.date}, {event.time}
+          {eventDate.toUTCString()}
         </span>
         {event.venue}
         <Divider
@@ -42,9 +57,9 @@ const EventCard = (props) => {
         ></Divider>
         Speakers
         <div className={styles.event_speakers_inner}>
-          {event.speakers.slice(0, 3).map((speaker, index) => {
+          {eventSpeakers.slice(0, 3).map((speaker, index) => {
             return (
-              <Tooltip title={speaker} placement="top" key={speaker}>
+              <Tooltip title={speaker.name} placement="top" key={speaker.name}>
                 <Avatar
                   style={{
                     height: "30px",
@@ -52,8 +67,8 @@ const EventCard = (props) => {
                     marginLeft: "-5px",
                     backgroundColor: colors[index],
                   }}
-                  src={speaker}
-                  alt={speaker}
+                  src={speaker.photo}
+                  alt={speaker.name}
                 />
               </Tooltip>
             );
@@ -61,10 +76,10 @@ const EventCard = (props) => {
           <div style={{ marginLeft: "2px", fontSize: "0.9rem" }}>
             {event.speakers.length > 3 ? (
               <CustomWidthTooltip
-                title={event.speakers.slice(3).join(", ")}
+                title={eventSpeakers.slice(3).join(", ")}
                 placement="top"
               >
-                <span>{`+${event.speakers.length - 3} more`}</span>
+                <span>{`+${eventSpeakers.length - 3} more`}</span>
               </CustomWidthTooltip>
             ) : (
               ""

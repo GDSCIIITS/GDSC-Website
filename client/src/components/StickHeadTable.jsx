@@ -9,8 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableHead from "@mui/material/TableHead";
-
-import { pastEvents } from "../store/events";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   dark: {
@@ -60,15 +59,16 @@ function createData(EventName, code, Venue, more) {
   return { EventName, code, Venue, more };
 }
 
-const rows = pastEvents.map((event) =>
-  createData(event.title, event.date, event.venue, "See More")
-);
-
 const StickyHeadTable = (props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const darkTheme = useStyles();
   const label = useStyles2();
+  const pastEvents = useSelector((state) => state.events.pastEvents);
+
+  const rows = pastEvents.map((event) =>
+    createData(event.title, event.date, event.venue, "See More")
+  );
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

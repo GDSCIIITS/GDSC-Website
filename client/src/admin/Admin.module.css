@@ -1,0 +1,12 @@
+.sidenav ul {
+    list-style-type: none;
+    border-right: 2px solid #c4c4c4;
+}
+
+.sidenav ul li {
+    margin: 0.5em;
+}
+
+.sidenav ul button {
+    text-decoration: none;
+}

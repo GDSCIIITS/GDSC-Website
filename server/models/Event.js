@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema({
   status: String,
   date: Date,
   venue: String,
-  speakers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Speaker" }],
+  speakers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Speaker"}],
 });
 
 const Event = mongoose.model("Event", EventSchema);

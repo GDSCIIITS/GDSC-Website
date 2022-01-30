@@ -6,14 +6,15 @@ import GridViewIcon from "@mui/icons-material/GridView";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import StickyHeadTable from "../components/StickHeadTable";
 import EventCard from "../components/EventCard";
-import { upcomingEvents, pastEvents } from "../store/events";
 import styles from "./Events.module.css";
 
 const Events = () => {
   const themeData = useSelector((state) => state.DarkMode);
   const dark = {color: 'white', backgroundColor: '#121212'}
   const [gridView, setGridView] = useState(true);
-  // const classname = themeData.theme ? styles.dark : "";
+  const upcomingEvents = useSelector(state => state.events.upComingEvents)
+  const pastEvents = useSelector(state => state.events.pastEvents)
+
   return (
     <div>
       <Helmet>
@@ -45,14 +46,6 @@ const Events = () => {
         <h2>
           <strong>Past Events</strong>
         </h2>
-        {/* <div className={"col-md-6 "}>
-          <input
-            className={"form-control " + classname}
-            name="SEARCH"
-            type="text"
-            placeholder="Search"
-          />{" "}
-        </div> */}
       </div>
       <div
         style={{
