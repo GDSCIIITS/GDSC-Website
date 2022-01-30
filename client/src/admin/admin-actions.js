@@ -157,3 +157,19 @@ export const deleteSpeaker = (id) => {
     }
   };
 };
+
+export const signin = (body) => {
+  return async (dispatch) => {
+    try {
+      
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/signin",
+        body
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return "failure";
+    }
+  };
+};
