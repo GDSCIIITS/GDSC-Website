@@ -2,13 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialEvents = {
   events: [],
-  speakers: []
+  speakers: [],
+  isAuthenticated: null,
 };
 
 const eventSlice = createSlice({
   name: "events",
   initialState: initialEvents,
   reducers: {
+    setAuthStatus(state, action) {
+      state.isAuthenticated = action.payload
+    },
     setEvents(state, action) {
       state.events = action.payload
     },
@@ -19,10 +23,8 @@ const eventSlice = createSlice({
       state.events = [...state.events, action.payload]
     },
     updateEvent(state,action) {
-      console.log(action.payload)
       state.events.forEach((item, index) => {
         if(item._id === action.payload._id) {
-          console.log("This has updated")
           state.events.splice(index, 1)
           state.events.splice(index, 0, action.payload)
         }

@@ -1,14 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../pages/Events.module.css";
-import { Link } from "react-router-dom";
 import SpeakerCard from "../components/SpeakerCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { pingAdmin } from "./admin-actions";
+import { eventActions } from "../store/events";
+import { CircularProgress, Snackbar } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import { useLocation } from "react-router-dom";
+
 
 const AdminSpeakers = () => {
   const speakers = useSelector((state) => state.activity.speakers);
-  console.log(speakers)
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [loading, setLoading] = useState(false)
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const location = useLocation();
+  const [snacks, setSnacks] = useState(location.state);
+  const [open, isOpen] = useState(snacks?.message !== undefined);
+
+  
+  useEffect(() => {
+    setSnacks(location.state)
+    history.replace({ state: {} });
+    dispatch(pingAdmin()).then((response) => {
+      if (response.payload.msg === "token is not valid") {
+        dispatch(eventActions.setAuthStatus(false));
+        localStorage.setItem("isAuthenticated", "false");
+        history.replace({pathname: "/admin", state: {message: "Session expired! Please login again"}});
+      }
+    });
+  }, []);
+
+
   return (
-    <div>
+    loading ? <div className="container d-flex justify-content-center align-items-center" style={{height: '100vh', width: '100vw'}}>
+      <CircularProgress />
+    </div>
+     : <div>
+       <Snackbar
+        open={open}
+        anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+        onClose={() => {
+          isOpen(false);
+        }}
+      >
+        <Alert
+          onClose={() => {
+            isOpen(false);
+          }}
+          severity={snacks?.severity}
+          sx={{ width: "100%" }}
+        >
+          {snacks?.message}
+        </Alert>
+      </Snackbar>
       <div
         className={`container ${styles.sameline}`}
         style={{ marginTop: "30px" }}
@@ -24,9 +74,27 @@ const AdminSpeakers = () => {
           marginRight: "10%",
         }}
       >
-        <Link className="btn btn-primary shadow-none" to="/admin/speaker-form">
+        <button
+          className="btn btn-primary shadow-none"
+          to="/admin/speaker-form"
+          onClick={(event) => {
+            setLoading(true)
+            event.preventDefault()
+            dispatch(pingAdmin()).then((response) => {
+              if (response.payload.msg === "token is not valid") {
+                localStorage.setItem("isAuthenticated", "false");
+                dispatch(eventActions.setAuthStatus(false));
+                setLoading(false)
+                history.replace({pathname: "/admin", state: {message: "Session expired! Please login again"}});
+              } else {
+                setLoading(false)
+                history.push("/admin/speaker-form");
+              }
+            });
+          }}
+        >
           Create Speaker
-        </Link>
+        </button>
       </div>
       <div
         style={{

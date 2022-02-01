@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import styles from "./EventCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {deleteEvent} from "../admin/admin-actions"
+import { deleteEvent, pingAdmin } from "../admin/admin-actions";
 import { eventActions } from "../store/events";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
@@ -62,10 +62,20 @@ const EventCard = (props) => {
   const dispatch = useDispatch();
 
   const deleteHandler = () => {
-    dispatch(deleteEvent(event._id)).then((response) => {
-      console.log(response)
-      dispatch(eventActions.deleteEvent(event._id));
-      setOpen(false);
+    dispatch(pingAdmin()).then((response) => {
+      if (response.payload.msg === "token is not valid") {
+        localStorage.setItem("isAuthenticated", "false");
+        dispatch(eventActions.setAuthStatus(false));
+        history.replace({
+          pathname: "/admin",
+          state: { message: "Session expired! Please login again" },
+        });
+      } else {
+        dispatch(deleteEvent(event._id)).then((response) => {
+          dispatch(eventActions.deleteEvent(event._id));
+          setOpen(false);
+        });
+      }
     });
   };
 
@@ -79,8 +89,7 @@ const EventCard = (props) => {
         <Box sx={{ ...style, width: 400 }}>
           <h2 id="parent-modal-title">Are you sure?</h2>
           <p id="parent-modal-description">
-            Deleting this event will remove all the data related to this
-            event
+            Deleting this event will remove all the data related to this event
           </p>
           <div className="container d-flex justify-content-between">
             <Button
@@ -136,27 +145,46 @@ const EventCard = (props) => {
             )}
           </div>
         </div>
-        { isAdmin && <div className="container d-flex justify-content-between">
-          <Button
-            style={{ textTransform: "none" }}
-            onClick={() => {
-              history.push(`/admin/event-form?id=${event._id}`);
-            }}
-          >
-            Edit event
-          </Button>
-          <Button
-            style={{ textTransform: "none", color: "red" }}
-            onClick={() => {
-              setOpen(true);
-            }}
-          >
-            Delete
-          </Button>
-        </div>}
-        <Button style={{ textTransform: "none" }} onClick={() => {
-          openInNewTab(event.link)
-        }}>See More</Button>
+        {isAdmin && (
+          <div className="container d-flex justify-content-between">
+            <Button
+              style={{ textTransform: "none" }}
+              onClick={() => {
+                dispatch(pingAdmin()).then((response) => {
+                  if (response.payload.msg === "token is not valid") {
+                    localStorage.setItem("isAuthenticated", "false");
+                    dispatch(eventActions.setAuthStatus(false));
+                    history.replace({
+                      pathname: "/admin",
+                      state: { message: "Session expired! Please login again" },
+                    });
+                  } else {
+                    history.push(`/admin/event-form?id=${event._id}`);
+                  }
+                });
+              }}
+            >
+              Edit event
+            </Button>
+            <Button
+              style={{ textTransform: "none", color: "red" }}
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        )}
+        <Button
+          style={{ textTransform: "none" }}
+          disabled={event.link === ""}
+          onClick={() => {
+            openInNewTab(event.link);
+          }}
+        >
+          See More
+        </Button>
       </div>
     </div>
   );
