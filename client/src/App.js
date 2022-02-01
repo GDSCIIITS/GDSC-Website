@@ -30,13 +30,11 @@ const App = () => {
       );
     }
     dispatch(getEvents()).then((response) => {
-      console.log(response);
       if (response !== "failure") {
         dispatch(eventActions.setEvents(response));
       }
     });
     dispatch(getSpeakers()).then((response) => {
-      console.log(response);
       if (response !== "failure") {
         dispatch(eventActions.setSpeakers(response));
       }

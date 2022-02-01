@@ -14,7 +14,6 @@ router.get("/auth", auth, async (req, res) => {
         const user = await User.findById(req.user.id).select("-password");
         res.json(user);
     } catch (error) {
-        console.log(error.message);
         res.status(500).send("Server Error");
     }
 });
@@ -68,7 +67,6 @@ router.post(
                 }
             );
         } catch (error) {
-            console.log(error.message);
             res.status(500).send("Server Erroe!");
         }
     }
@@ -84,7 +82,6 @@ router.post(
         check("password", "Enter valid password").isLength({ min: 6 }),
     ],
     async (req, res) => {
-        console.log(req.body);
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
@@ -122,7 +119,6 @@ router.post(
                 }
             );
         } catch (error) {
-            console.log(error.message);
             res.status(500).send("Server Error!");
         }
     }

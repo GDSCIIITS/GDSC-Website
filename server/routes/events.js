@@ -2,13 +2,14 @@ const express = require("express");
 const router = require("express").Router();
 router.use(express.json());
 const Event = require("../models/Event");
+const authMiddleware = require("../middleware/auth")
 
 router.route("/events").get(async (req, res) => {
   const events = await Event.find();
   res.json(events);
 });
 
-router.route("/events").post(async (req, res) => {
+router.route("/events").post(authMiddleware, async (req, res) => {
   const speakers = []
   req.body.speakers.forEach((item, index) => {
     speakers.push(item.value)
@@ -19,15 +20,16 @@ router.route("/events").post(async (req, res) => {
     status: req.body.status,
     date: req.body.date,
     venue: req.body.venue,
+    link: req.body.link,
     speakers: speakers
   }
   const event = new Event(data);
   event
     .save()
-    .then(() => {
+    .then((response) => {
       res.status(201).json({
         message: "Event saved successfully!",
-        payload: data
+        payload: response
       });
     })
     .catch((error) => {
@@ -37,7 +39,7 @@ router.route("/events").post(async (req, res) => {
     });
 });
 
-router.route("/events").put(async (req, res) => {
+router.route("/events").put(authMiddleware, async (req, res) => {
   try {
     const speakers = []
     req.body.speakers.forEach((item, index) => {
@@ -49,6 +51,7 @@ router.route("/events").put(async (req, res) => {
       status: req.body.status,
       date: req.body.date,
       venue: req.body.venue,
+      link: req.body.link,
       speakers: speakers
     }
     const response = await Event.updateOne(
@@ -61,22 +64,19 @@ router.route("/events").put(async (req, res) => {
       .status(201)
       .json({ message: "Event updated successfully", payload: response, body: {...data, _id: req.body._id} });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       error: error,
     });
   }
 });
 
-router.route("/events").delete(async (req, res) => {
-  console.log(req.body)
+router.route("/events").delete(authMiddleware, async (req, res) => {
   try {
     const response = await Event.deleteOne({ _id: req.body.id });
     res
       .status(201)
       .json({ message: "Event deleted successfully", payload: response });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       error: error,
     });

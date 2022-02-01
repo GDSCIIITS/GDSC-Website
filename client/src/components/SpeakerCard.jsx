@@ -5,9 +5,9 @@ import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
 import styles from "./EventCard.module.css";
 import { useHistory } from "react-router-dom";
-import { Box, Modal, Snackbar } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { deleteSpeaker } from "../admin/admin-actions";
+import { deleteSpeaker, pingAdmin } from "../admin/admin-actions";
 import { eventActions } from "../store/events";
 
 const SpeakerCard = (props) => {
@@ -30,10 +30,20 @@ const SpeakerCard = (props) => {
   const dispatch = useDispatch();
 
   const deleteHandler = (event) => {
-    dispatch(deleteSpeaker(speaker._id)).then((response) => {
-      console.log(response)
-      dispatch(eventActions.deleteSpeaker(speaker._id));
-      setOpen(false);
+    dispatch(pingAdmin()).then((response) => {
+      if (response.payload.msg === "token is not valid") {
+        localStorage.setItem("isAuthenticated", "false");
+        dispatch(eventActions.setAuthStatus(false));
+        history.replace({
+          pathname: "/admin",
+          state: { message: "Session expired! Please login again" },
+        });
+      } else {
+        dispatch(deleteSpeaker(speaker._id)).then((response) => {
+          dispatch(eventActions.deleteSpeaker(speaker._id));
+          setOpen(false);
+        });
+      }
     });
   };
 
@@ -89,7 +99,20 @@ const SpeakerCard = (props) => {
               <Button
                 style={{ textTransform: "none" }}
                 onClick={() => {
-                  history.push(`/admin/speaker-form?id=${speaker._id}`);
+                  dispatch(pingAdmin()).then((response) => {
+                    if (response.payload.msg === "token is not valid") {
+                      localStorage.setItem("isAuthenticated", "false");
+                      dispatch(eventActions.setAuthStatus(false));
+                      history.replace({
+                        pathname: "/admin",
+                        state: {
+                          message: "Session expired! Please login again",
+                        },
+                      });
+                    } else {
+                      history.push(`/admin/speaker-form?id=${speaker._id}`);
+                    }
+                  });
                 }}
               >
                 Edit speaker

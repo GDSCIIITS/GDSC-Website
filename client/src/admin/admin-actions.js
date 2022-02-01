@@ -6,7 +6,6 @@ export const getEvents = () => {
       const response = await axios.get("http://localhost:5000/api/events");
       return response.data;
     } catch (error) {
-      console.log(error);
       return "failure";
     }
   };
@@ -14,32 +13,44 @@ export const getEvents = () => {
 
 export const sendEvent = (data) => {
   return async (dispatch) => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
     try {
       const body = { ...data };
       const response = await axios.post(
         "http://localhost:5000/api/events",
-        body
+        body,
+        config
       );
       return response.data;
     } catch (error) {
-      console.log(error);
-      return "failure";
+      return {message: "Failure", payload: error.response.data};
     }
   };
 };
 
 export const updateEvent = (data) => {
   return async (dispatch) => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
     try {
       const body = { ...data };
       const response = await axios.put(
         "http://localhost:5000/api/events",
-        body
+        body,
+        config
       );
       return { body: response.data.body, payload: response.data };
     } catch (error) {
-      console.log(error);
-      return "failure";
+      return {message: "Failure", payload: error.response.data};
     }
   };
 };
@@ -47,21 +58,18 @@ export const updateEvent = (data) => {
 export const deleteEvent = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
-        "http://localhost:5000/api/events",
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            id: id,
-          },
-        }
-      );
+      const response = await axios.delete("http://localhost:5000/api/events", {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": localStorage.getItem("token"),
+        },
+        data: {
+          id: id,
+        },
+      });
       return { message: "Deleted event", body: response };
     } catch (error) {
-      console.log(error);
-      return { message: "Failed to delete event" };
+      return {message: "Failure", payload: error.response.data};
     }
   };
 };
@@ -72,7 +80,6 @@ export const getSpeakers = () => {
       const response = await axios.get("http://localhost:5000/api/speakers");
       return response.data;
     } catch (error) {
-      console.log(error);
       return "failure";
     }
   };
@@ -80,6 +87,12 @@ export const getSpeakers = () => {
 
 export const sendSpeaker = (photo, data) => {
   return async (dispatch) => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
     try {
       let photoData = new FormData();
       photoData.append("file", photo);
@@ -94,44 +107,48 @@ export const sendSpeaker = (photo, data) => {
       };
       const response2 = await axios.post(
         "http://localhost:5000/api/speakers",
-        body
+        body,
+        config
       );
-      return { body: body, payload: response2.data };
+      return { body: response2.data.payload, payload: response2.data };
     } catch (error) {
-      console.log(error);
-      return "failure";
+      return {message: "Failure", payload: error.response.data};
     }
   };
 };
 
 export const updateSpeaker = (id, initPhoto, photo, data) => {
   return async (dispatch) => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
     try {
       let photoData = new FormData();
       photoData.append("file", photo);
       photoData.append("upload_preset", "gdsc-iiits-174");
       const response1 =
-        photo !== ''
+        photo !== ""
           ? await axios.post(
               "https://api.cloudinary.com/v1_1/gdsc-iiits/image/upload",
               photoData
             )
           : { data: { url: initPhoto } };
-      console.log(response1);
       const body = {
         _id: id,
         ...data,
         photo: response1.data.url,
       };
-      console.log(body);
       const response2 = await axios.put(
         "http://localhost:5000/api/speakers",
-        body
+        body,
+        config
       );
       return { body: body, payload: response2.data };
     } catch (error) {
-      console.log(error);
-      return "failure";
+      return {message: "Failure", payload: error.response.data};
     }
   };
 };
@@ -144,6 +161,7 @@ export const deleteSpeaker = (id) => {
         {
           headers: {
             "Content-Type": "application/json",
+            "x-auth-token": localStorage.getItem("token"),
           },
           data: {
             id: id,
@@ -152,7 +170,6 @@ export const deleteSpeaker = (id) => {
       );
       return { message: "Deleted speaker", body: response };
     } catch (error) {
-      console.log(error);
       return { message: "Failed to delete speaker" };
     }
   };
@@ -161,15 +178,32 @@ export const deleteSpeaker = (id) => {
 export const signin = (body) => {
   return async (dispatch) => {
     try {
-      
       const response = await axios.post(
         "http://localhost:5000/api/auth/signin",
         body
       );
       return response.data;
     } catch (error) {
-      console.log(error);
       return "failure";
+    }
+  };
+};
+
+export const pingAdmin = () => {
+  return async (dispatch) => {
+    let config = {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    };
+    try {
+      const response = await axios.get(
+        "http://localhost:5000/api/auth",
+        config
+      );
+      return {message: "Validated admin successfully", payload: response.data};
+    } catch (error) {
+      return {message: "Validation failed", payload: error.response.data};
     }
   };
 };

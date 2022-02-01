@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../assets/gdsc_logo.png";
 import classes from "./AdminNav.module.css";
+import { useHistory } from "react-router-dom";
+import { pingAdmin } from "./admin-actions";
+import { eventActions } from "../store/events";
 // import Toggler from "./Toggler";
 
-const AdminNav = () => {
+const AdminNav = (props) => {
   const themeData = useSelector((state) => state.DarkMode);
   const classname = themeData.theme ? classes.dark : "";
   const [isNavExpanded, setIsNavExpanded] = useState(false);
@@ -37,6 +40,18 @@ const AdminNav = () => {
       setIsNavExpanded(false);
     }
   }, [screenWidth, isNavExpanded]);
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+  useEffect(() => {
+    dispatch(pingAdmin()).then((response) => {
+      if (response.payload.msg === "token is not valid") {
+        localStorage.setItem("isAuthenticated", "false")
+        dispatch(eventActions.setAuthStatus(false));
+        history.replace({pathname: "/admin", state: {message: "Session expired! Please login again"}});
+      }
+    });
+  }, []);
 
   return (
     <div
@@ -82,7 +97,7 @@ const AdminNav = () => {
       )}
       <nav>
         <ul className={classes["nav_links"]}>
-          {navLinks.map((navLink) => {
+          {props.isAuth &&  navLinks.map((navLink) => {
             return (
               <li>
                 <NavLink

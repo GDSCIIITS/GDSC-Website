@@ -6,6 +6,7 @@ const EventSchema = new mongoose.Schema({
   status: String,
   date: Date,
   venue: String,
+  link: String,
   speakers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Speaker"}],
 });
 
