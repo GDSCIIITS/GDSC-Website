@@ -36,7 +36,7 @@ const EventCard = (props) => {
   const { event, isAdmin } = props;
   const themeData = useSelector((state) => state.DarkMode);
   const speakers = useSelector((state) => state.activity.speakers);
-  const classname = themeData.theme ? styles.dark : "";
+  const classname = themeData.theme && !isAdmin ? styles.dark : "";
   const colors = ["#DB4437", "#F4B400", "#0F9D58"];
 
   const openInNewTab = (url) => {

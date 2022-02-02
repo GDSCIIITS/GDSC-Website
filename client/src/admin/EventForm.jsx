@@ -60,7 +60,7 @@ const EventForm = () => {
         status: thisEvent[0].status,
         date: thisDate.toISOString().slice(0, 16),
         venue: thisEvent[0].venue,
-        link: thisEvent[0].link
+        link: thisEvent[0].link,
       }
     : {
         title: "",
@@ -69,7 +69,7 @@ const EventForm = () => {
         status: "none",
         date: "",
         venue: "",
-        link: ""
+        link: "",
       };
 
   const [data, setData] = useState(initData);
@@ -296,13 +296,25 @@ const EventForm = () => {
               }}
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary shadow-none"
-            style={{ margin: "0.4em 1em" }}
-          >
-            Submit
-          </button>
+          <div className="d-flex">
+            <button
+              type="submit"
+              className="btn btn-primary shadow-none"
+              style={{ margin: "0.4em 1em" }}
+            >
+              Submit
+            </button>
+
+            <button
+              onClick={() => {
+                  history.goBack()
+              }}
+              className="btn btn-outline-secondary shadow-none"
+              style={{ margin: "0.4em 1em" }}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>

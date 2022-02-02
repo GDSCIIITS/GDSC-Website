@@ -11,8 +11,6 @@ import { eventActions } from "../store/events";
 // import Toggler from "./Toggler";
 
 const AdminNav = (props) => {
-  const themeData = useSelector((state) => state.DarkMode);
-  const classname = themeData.theme ? classes.dark : "";
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const navLinks = [
@@ -57,12 +55,12 @@ const AdminNav = (props) => {
     <div
       className={
         isNavExpanded
-          ? classes["nav-container-expanded"] + " " + classname
-          : classes["nav-container"] + " " + classname
+          ? classes["nav-container-expanded"]
+          : classes["nav-container"]
       }
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link to="/" className={classes["nav-logo"] + " " + classname}>
+        <Link to="/" className={classes["nav-logo"]}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <img
               src={Logo}
@@ -103,7 +101,7 @@ const AdminNav = (props) => {
                 <NavLink
                   exact
                   to={navLink.to}
-                  className={classes["nav-item"] + " " + classname}
+                  className={classes["nav-item"]}
                   activeClassName={classes.active}
                   onClick={() => {
                     if (isNavExpanded) {
