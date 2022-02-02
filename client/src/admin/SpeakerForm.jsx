@@ -66,8 +66,11 @@ const SpeakerForm = () => {
     if (!id) {
       dispatch(sendSpeaker(photo, data)).then((response) => {
         if (response.payload.msg === "token is not valid") {
-          dispatch(eventActions.setAuthStatus(false))
-          history.replace({pathname: "/admin", state: {message: "Session expired! Please login again"}});
+          dispatch(eventActions.setAuthStatus(false));
+          history.replace({
+            pathname: "/admin",
+            state: { message: "Session expired! Please login again" },
+          });
         } else {
           dispatch(eventActions.addSpeaker(response.body));
           setLoading(false);
@@ -83,8 +86,11 @@ const SpeakerForm = () => {
     } else {
       dispatch(updateSpeaker(id, initPhoto, photo, data)).then((response) => {
         if (response.payload.msg === "token is not valid") {
-          dispatch(eventActions.setAuthStatus(false))
-          history.replace({pathname: "/admin", state: {message: "Session expired! Please login again"}});
+          dispatch(eventActions.setAuthStatus(false));
+          history.replace({
+            pathname: "/admin",
+            state: { message: "Session expired! Please login again" },
+          });
         } else {
           dispatch(eventActions.updateSpeaker(response.body));
           setLoading(false);
@@ -236,7 +242,7 @@ const SpeakerForm = () => {
               }}
             >
               <option value="none" disabled>
-                Select the rank in the domain *
+                Select the role in the domain *
               </option>
               <option value="Lead">Lead</option>
               <option value="Core">Core</option>
@@ -244,13 +250,25 @@ const SpeakerForm = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary shadow-none"
-            style={{ margin: "0.4em 1em" }}
-          >
-            Submit
-          </button>
+          <div className="d-flex">
+            <button
+              type="submit"
+              className="btn btn-primary shadow-none"
+              style={{ margin: "0.4em 1em" }}
+            >
+              Submit
+            </button>
+
+            <button
+              onClick={() => {
+                history.goBack();
+              }}
+              className="btn btn-outline-secondary shadow-none"
+              style={{ margin: "0.4em 1em" }}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>
