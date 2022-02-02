@@ -65,12 +65,14 @@ const App = () => {
               </Route>
             </Admin>
           </Route>
-          <div className={classname}>
-            <Navbar />
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <div style={{ margin: "30px 60px 0px 60px" }}>
+        </Switch>
+        <div className={`${classes.main} ${classname}`}>
+          <Navbar />
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <div className={`${classes.pageStyle} ${classname}`}>
+            <Switch>
               <Route path="/events" exact>
                 <Events />
               </Route>
@@ -86,10 +88,12 @@ const App = () => {
               <Route path="/blogs" exact>
                 <Blogs />
               </Route>
+            </Switch>
+            <div className={classes.footer}>
               <Footer />
             </div>
           </div>
-        </Switch>
+        </div>
       </HelmetProvider>
     </Router>
   );

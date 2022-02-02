@@ -94,9 +94,9 @@ const Navbar = () => {
       )}
       <nav>
         <ul className={classes["nav_links"]}>
-          {navLinks.map((navLink) => {
+          {navLinks.map((navLink, index) => {
             return (
-              <li>
+              <li key={navLink.name + index}>
                 <NavLink
                   exact
                   to={navLink.to}

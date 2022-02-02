@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteEvent, pingAdmin } from "../admin/admin-actions";
 import { eventActions } from "../store/events";
+import moment from "moment";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -79,6 +80,8 @@ const EventCard = (props) => {
     });
   };
 
+  const formattedEventDate = moment(eventDate).format("D MMM YYYY, h:mm A");
+
   return (
     <div className={classname}>
       <Modal
@@ -109,7 +112,7 @@ const EventCard = (props) => {
         <Tooltip title={event.title} placement="top">
           <h5 className={styles.event_title}>{event.title}</h5>
         </Tooltip>
-        <span style={{ marginBottom: "5px" }}>{eventDate.toUTCString()}</span>
+        <span style={{ marginBottom: "5px" }}>{formattedEventDate}</span>
         {event.venue}
         <Divider
           style={{ width: "100%", marginTop: "10px", marginBottom: "10px" }}
