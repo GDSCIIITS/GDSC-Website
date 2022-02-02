@@ -65,35 +65,35 @@ const App = () => {
               </Route>
             </Admin>
           </Route>
-        </Switch>
-        <div className={`${classes.main} ${classname}`}>
-          <Navbar />
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <div className={`${classes.pageStyle} ${classname}`}>
-            <Switch>
-              <Route path="/events" exact>
-                <Events />
-              </Route>
-              <Route path="/team" exact>
-                <Team />
-              </Route>
-              <Route path="/about" exact>
-                <About />
-              </Route>
-              <Route path="/contact" exact>
-                <Contact />
-              </Route>
-              <Route path="/blogs" exact>
-                <Blogs />
-              </Route>
-            </Switch>
-            <div className={classes.footer}>
-              <Footer />
+          <div className={`${classes.main} ${classname}`}>
+            <Navbar />
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <div className={`${classes.pageStyle} ${classname}`}>
+              <Switch>
+                <Route path="/events" exact>
+                  <Events />
+                </Route>
+                <Route path="/team" exact>
+                  <Team />
+                </Route>
+                <Route path="/about" exact>
+                  <About />
+                </Route>
+                <Route path="/contact" exact>
+                  <Contact />
+                </Route>
+                <Route path="/blogs" exact>
+                  <Blogs />
+                </Route>
+              </Switch>
+              <div className={classes.footer}>
+                <Footer />
+              </div>
             </div>
           </div>
-        </div>
+        </Switch>
       </HelmetProvider>
     </Router>
   );
