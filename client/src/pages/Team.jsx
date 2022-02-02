@@ -9,7 +9,7 @@ const Team = () => {
   const themeData = useSelector((state) => state.DarkMode);
   const classname = themeData.theme ? styles.dark : "";
   return (
-    <div className={classname}>
+    <div className={classname} style={{ margin: "30px 60px 0px 60px" }}>
       <Helmet>
         <title>GDSC IIITS | Team</title>
       </Helmet>

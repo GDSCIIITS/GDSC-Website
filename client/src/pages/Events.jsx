@@ -10,19 +10,19 @@ import styles from "./Events.module.css";
 
 const Events = () => {
   const themeData = useSelector((state) => state.DarkMode);
-  const dark = {color: 'white', backgroundColor: '#121212'}
+  const dark = { color: "white", backgroundColor: "#121212" };
   const [gridView, setGridView] = useState(true);
-  const events = useSelector(state => state.activity.events)
-  const upcomingEvents = events.filter(event => event.status !== "Completed")
-  const pastEvents = events.filter(event => event.status === "Completed")
+  const events = useSelector((state) => state.activity.events);
+  const upcomingEvents = events.filter((event) => event.status !== "Completed");
+  const pastEvents = events.filter((event) => event.status === "Completed");
 
   return (
-    <div>
+    <div style={{ margin: "30px 60px 0px 60px" }}>
       <Helmet>
         <title>GDSC IIITS | Events</title>
       </Helmet>
       <h2
-        className="container"
+        className={`${styles.eventsTitle} container`}
         style={{ marginBottom: "30px", textAlign: "center" }}
       >
         <strong>Upcoming Events</strong>
@@ -34,47 +34,49 @@ const Events = () => {
           justifyContent: "center",
         }}
       >
-        {upcomingEvents.length > 0
-          ? upcomingEvents.map((event) => {
-              return <EventCard key={event.title} event={event} />;
-            })
-          : <p style={{color: themeData.theme ? '#F4B400' : '#0F9D58'}}>There are no upcoming events!</p>}
+        {upcomingEvents.length > 0 ? (
+          upcomingEvents.map((event) => {
+            return <EventCard key={event.title} event={event} />;
+          })
+        ) : (
+          <p style={{ color: themeData.theme ? "#F4B400" : "#0F9D58" }}>
+            There are no upcoming events!
+          </p>
+        )}
       </div>
-      <div
-        className={`container ${styles.sameline}`}
-        style={{ marginTop: "30px" }}
-      >
-        <h2>
+      <div className={styles.pastEventsSection}>
+        <div className={styles.emptyContainer}></div>
+        <h2 className={styles.eventsTitle}>
           <strong>Past Events</strong>
         </h2>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginRight: "10%",
-        }}
-      >
-        <IconButton
-          style={{ height: "35px", width: "35px" }}
-          onClick={() => {
-            if (!gridView) {
-              setGridView(true);
-            }
-          }}
-        >
-          <GridViewIcon fontSize="small" sx={themeData.theme ? dark : ""} />
-        </IconButton>
-        <IconButton
-          style={{ height: "35px", width: "35px" }}
-          onClick={() => {
-            if (gridView) {
-              setGridView(false);
-            }
-          }}
-        >
-          <TableRowsIcon fontSize="small" sx={themeData.theme ? dark : ""} />
-        </IconButton>
+        <div className={styles.iconsContainer}>
+          <IconButton
+            style={{ height: "35px", width: "35px" }}
+            onClick={() => {
+              if (!gridView) {
+                setGridView(true);
+              }
+            }}
+          >
+            <GridViewIcon
+              fontSize="small"
+              className={themeData.theme ? dark : ""}
+            />
+          </IconButton>
+          <IconButton
+            style={{ height: "35px", width: "35px" }}
+            onClick={() => {
+              if (gridView) {
+                setGridView(false);
+              }
+            }}
+          >
+            <TableRowsIcon
+              fontSize="small"
+              className={themeData.theme ? dark : ""}
+            />
+          </IconButton>
+        </div>
       </div>
       {gridView ? (
         <div
@@ -85,11 +87,15 @@ const Events = () => {
             marginTop: "10px",
           }}
         >
-          {pastEvents.length > 0
-            ? pastEvents.map((event) => {
-                return <EventCard key={event.title} event={event} />;
-              })
-            : <p style={{color: themeData.theme ? '#F4B400' : '#0F9D58'}}>There are no past events!</p>}
+          {pastEvents.length > 0 ? (
+            pastEvents.map((event) => {
+              return <EventCard key={event.title} event={event} />;
+            })
+          ) : (
+            <p style={{ color: themeData.theme ? "#F4B400" : "#0F9D58" }}>
+              There are no past events!
+            </p>
+          )}
         </div>
       ) : (
         <div

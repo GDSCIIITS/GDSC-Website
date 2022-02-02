@@ -5,7 +5,7 @@ import ContactSVG from "../assets/contact.svg";
 
 const Contact = () => {
   return (
-    <>
+    <div style={{ margin: "30px 60px 0px 60px" }}>
       <Helmet>
         <title>GDSC IIITS | Contact</title>
       </Helmet>
@@ -30,7 +30,7 @@ const Contact = () => {
         </p>
         <img src={ContactSVG} alt="unimportant" />
       </div>
-    </>
+    </div>
   );
 };
 

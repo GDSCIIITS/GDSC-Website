@@ -80,11 +80,17 @@ router.post(
         check("name", "name is required").not().isEmpty(),
         check("email", "Enter valid emial").isEmail(),
         check("password", "Enter valid password").isLength({ min: 6 }),
+        check("secretCode", "secret code is required").not().isEmpty(),
     ],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
+        }
+        if (req.body.secretCode !== process.env.secretCode) {
+            return res.status(404).json({
+                errors: [{ message: "you have used wrong secret code" }],
+            });
         }
 
         const { name, email, password } = req.body;

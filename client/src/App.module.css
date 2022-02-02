@@ -1,5 +1,20 @@
-.dark{
-    background-color: #121212;
-    color: white;
-    border-color: #2c7eea;
+.dark {
+  background-color: #121212;
+  color: white;
+  border-color: #2c7eea;
+}
+
+.main {
+  height: 100vh;
+}
+
+.pageStyle {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer {
+  margin-top: 50px;
 }

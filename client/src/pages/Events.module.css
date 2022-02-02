@@ -21,9 +21,32 @@
   background-color: #9e9e9e;
 }
 
-.sameline {
+.pastEventsSection {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.emptyContainer {
+  width: 60px;
+}
+
+.eventsTitle {
+  font-size: 4.5vmin;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 375px) {
+  .eventsTitle {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+}
+
+.iconsContainer {
+  display: flex;
+  width: 60px;
 }
 
 .dark span,

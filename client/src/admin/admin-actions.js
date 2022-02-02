@@ -28,7 +28,7 @@ export const sendEvent = (data) => {
       );
       return response.data;
     } catch (error) {
-      return {message: "Failure", payload: error.response.data};
+      return { message: "Failure", payload: error.response.data };
     }
   };
 };
@@ -50,7 +50,7 @@ export const updateEvent = (data) => {
       );
       return { body: response.data.body, payload: response.data };
     } catch (error) {
-      return {message: "Failure", payload: error.response.data};
+      return { message: "Failure", payload: error.response.data };
     }
   };
 };
@@ -69,7 +69,7 @@ export const deleteEvent = (id) => {
       });
       return { message: "Deleted event", body: response };
     } catch (error) {
-      return {message: "Failure", payload: error.response.data};
+      return { message: "Failure", payload: error.response.data };
     }
   };
 };
@@ -112,7 +112,7 @@ export const sendSpeaker = (photo, data) => {
       );
       return { body: response2.data.payload, payload: response2.data };
     } catch (error) {
-      return {message: "Failure", payload: error.response.data};
+      return { message: "Failure", payload: error.response.data };
     }
   };
 };
@@ -148,7 +148,7 @@ export const updateSpeaker = (id, initPhoto, photo, data) => {
       );
       return { body: body, payload: response2.data };
     } catch (error) {
-      return {message: "Failure", payload: error.response.data};
+      return { message: "Failure", payload: error.response.data };
     }
   };
 };
@@ -201,9 +201,12 @@ export const pingAdmin = () => {
         "http://localhost:5000/api/auth",
         config
       );
-      return {message: "Validated admin successfully", payload: response.data};
+      return {
+        message: "Validated admin successfully",
+        payload: response.data,
+      };
     } catch (error) {
-      return {message: "Validation failed", payload: error.response.data};
+      return { message: "Validation failed", payload: error.response.data };
     }
   };
 };
