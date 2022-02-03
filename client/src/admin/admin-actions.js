@@ -3,7 +3,7 @@ import axios from "axios";
 export const getEvents = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/events");
+      const response = await axios.get("https://gdsciiits-node.herokuapp.com/api/events");
       return response.data;
     } catch (error) {
       return "failure";
@@ -22,7 +22,7 @@ export const sendEvent = (data) => {
     try {
       const body = { ...data };
       const response = await axios.post(
-        "http://localhost:5000/api/events",
+        "https://gdsciiits-node.herokuapp.com/api/events",
         body,
         config
       );
@@ -44,7 +44,7 @@ export const updateEvent = (data) => {
     try {
       const body = { ...data };
       const response = await axios.put(
-        "http://localhost:5000/api/events",
+        "https://gdsciiits-node.herokuapp.com/api/events",
         body,
         config
       );
@@ -58,7 +58,7 @@ export const updateEvent = (data) => {
 export const deleteEvent = (id) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete("http://localhost:5000/api/events", {
+      const response = await axios.delete("https://gdsciiits-node.herokuapp.com/api/events", {
         headers: {
           "Content-Type": "application/json",
           "x-auth-token": localStorage.getItem("token"),
@@ -77,7 +77,7 @@ export const deleteEvent = (id) => {
 export const getSpeakers = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/speakers");
+      const response = await axios.get("https://gdsciiits-node.herokuapp.com/api/speakers");
       return response.data;
     } catch (error) {
       return "failure";
@@ -106,7 +106,7 @@ export const sendSpeaker = (photo, data) => {
         photo: response1.data.url,
       };
       const response2 = await axios.post(
-        "http://localhost:5000/api/speakers",
+        "https://gdsciiits-node.herokuapp.com/api/speakers",
         body,
         config
       );
@@ -142,7 +142,7 @@ export const updateSpeaker = (id, initPhoto, photo, data) => {
         photo: response1.data.url,
       };
       const response2 = await axios.put(
-        "http://localhost:5000/api/speakers",
+        "https://gdsciiits-node.herokuapp.com/api/speakers",
         body,
         config
       );
@@ -157,7 +157,7 @@ export const deleteSpeaker = (id) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        "http://localhost:5000/api/speakers",
+        "https://gdsciiits-node.herokuapp.com/api/speakers",
         {
           headers: {
             "Content-Type": "application/json",
@@ -179,7 +179,7 @@ export const signin = (body) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/signin",
+        "https://gdsciiits-node.herokuapp.com/api/auth/signin",
         body
       );
       return response.data;
@@ -198,7 +198,7 @@ export const pingAdmin = () => {
     };
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/auth",
+        "https://gdsciiits-node.herokuapp.com/api/auth",
         config
       );
       return {
