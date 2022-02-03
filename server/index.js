@@ -45,6 +45,6 @@ app.use("/api", require("./routes/auth"));
 app.use("/api", require("./routes/events"));
 app.use("/api", require("./routes/speakers"));
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
   console.log("🚀 @ http://localhost:5000");
 });
